@@ -1,26 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #F7F7F4;
+    --foreground: #191A1C;
+    --card: #FFFFFF;
+    --card-foreground: #191A1C;
+    --primary: #8A1C2C;
+    --primary-hover: #721422;
+    --primary-foreground: #FFFFFF;
+    --muted: #EFEFEA;
+    --muted-foreground: #5E6066;
+    --accent: #F4E8EA;
+    --accent-foreground: #8A1C2C;
+    --border: #E5E5E0;
+    --input: #E5E5E0;
+    --ring: #8A1C2C;
+    --radius: 0.5rem;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Noto Sans Kannada", sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: "Georgia", "Cambria", "Times New Roman", "Noto Serif Kannada", serif;
+  }
+
+  .font-kannada {
+    font-family: "Noto Sans Kannada", "Noto Serif Kannada", "Tunga", "Kedage", "Mallige", sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F0F0EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D1C7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A89C;
+}
+
+/* Smooth motion with reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Subtle elevation */
+.editorial-shadow {
+  box-shadow: 0 4px 20px -2px rgba(25, 26, 28, 0.05), 0 2px 6px -1px rgba(25, 26, 28, 0.03);
+}
+
+.card-hover-effect {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-effect:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -4px rgba(25, 26, 28, 0.08), 0 4px 12px -2px rgba(25, 26, 28, 0.04);
 }

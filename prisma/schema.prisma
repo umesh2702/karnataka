@@ -1,0 +1,351 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  PLATFORM_ADMIN
+  ORGANISATION_ADMIN
+  EDITOR
+  REVIEWER
+}
+
+enum MembershipStatus {
+  ACTIVE
+  INVITED
+  SUSPENDED
+}
+
+enum PublicationStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum VerificationStatus {
+  UNCHECKED
+  REVIEWED
+  VERIFIED
+  NEEDS_REVIEW
+  INVALID
+}
+
+enum SourceType {
+  OFFICIAL_GOVERNMENT
+  LEGISLATIVE_ELECTION
+  OFFICIAL_ORGANISATION
+  REPUTABLE_NEWS
+  DIRECT_SUBMISSION
+  OTHER
+}
+
+enum RightsStatus {
+  PERMITTED
+  LICENSED
+  PUBLIC_DOMAIN
+  PENDING_REVIEW
+  REVOKED
+}
+
+enum ConsentScope {
+  PROFILE_PUBLICATION
+  PORTRAIT_USAGE
+  COPYRIGHTED_MEDIA
+  ORGANISATION_REPRESENTATION
+}
+
+enum ConsentStatus {
+  VALID
+  EXPIRED
+  REVOKED
+  NEEDS_REVIEW
+}
+
+enum ReviewStatus {
+  DRAFT
+  SUBMITTED
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  PUBLISHED
+}
+
+enum DecisionType {
+  APPROVED
+  REJECTED
+  RETURNED_FOR_CORRECTION
+}
+
+model Organisation {
+  id             String          @id @default(cuid())
+  name           String
+  slug           String          @unique
+  logoAssetId    String?
+  branding       Json?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  memberships    Membership[]
+  profiles       LeaderProfile[]
+  sources        Source[]
+  mediaAssets    MediaAsset[]
+  consentRecords ConsentRecord[]
+  auditEvents    AuditEvent[]
+}
+
+model User {
+  id              String           @id @default(cuid())
+  name            String
+  email           String           @unique
+  passwordHash    String
+  globalRole      String           @default("USER")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  memberships     Membership[]
+  submittedRevs   Revision[]       @relation("RevisionSubmitter")
+  reviewDecisions ReviewDecision[]
+  sourcesCreated  Source[]
+}
+
+model Membership {
+  id             String           @id @default(cuid())
+  organisationId String
+  userId         String
+  role           Role             @default(EDITOR)
+  status         MembershipStatus @default(ACTIVE)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  organisation   Organisation     @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organisationId, userId])
+  @@index([organisationId])
+  @@index([userId])
+}
+
+model LeaderProfile {
+  id                  String            @id @default(cuid())
+  organisationId      String
+  slug                String
+  displayName         String
+  kannadaName         String?
+  shortBio            String
+  biography           String            @db.Text
+  currentRole         String
+  organisationName    String?
+  region              String?
+  constituency        String?
+  portraitAssetId     String?
+  portraitUrl         String?
+  publicationStatus   PublicationStatus @default(DRAFT)
+  publishedRevisionId String?
+  roleLastVerifiedAt  DateTime?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  archivedAt          DateTime?
+
+  organisation        Organisation      @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  milestones          Milestone[]
+  initiatives         Initiative[]
+  revisions           Revision[]
+  consentRecords      ConsentRecord[]
+  claimSources        ClaimSource[]
+
+  @@unique([organisationId, slug])
+  @@index([publicationStatus])
+  @@index([organisationId])
+}
+
+model Milestone {
+  id                 String             @id @default(cuid())
+  profileId          String
+  title              String
+  description        String             @db.Text
+  eventDate          DateTime?
+  eventYear          Int?
+  sortOrder          Int                @default(0)
+  verificationStatus VerificationStatus @default(UNCHECKED)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  profile            LeaderProfile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  claimSources       ClaimSource[]
+
+  @@index([profileId, sortOrder])
+}
+
+model Initiative {
+  id                 String             @id @default(cuid())
+  profileId          String
+  title              String
+  description        String             @db.Text
+  startDate          DateTime?
+  endDate            DateTime?
+  verificationStatus VerificationStatus @default(UNCHECKED)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  profile            LeaderProfile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  claimSources       ClaimSource[]
+
+  @@index([profileId])
+}
+
+model Source {
+  id                 String             @id @default(cuid())
+  organisationId     String
+  title              String
+  url                String
+  publisher          String
+  sourceType         SourceType         @default(REPUTABLE_NEWS)
+  publicationDate    DateTime?
+  checkedAt          DateTime           @default(now())
+  verificationStatus VerificationStatus @default(UNCHECKED)
+  notes              String?            @db.Text
+  createdById        String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  organisation       Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdBy          User?              @relation(fields: [createdById], references: [id], onDelete: SetNull)
+  claimSources       ClaimSource[]
+
+  @@index([organisationId])
+  @@index([verificationStatus])
+}
+
+model ClaimSource {
+  id                String         @id @default(cuid())
+  sourceId          String
+  milestoneId       String?
+  initiativeId      String?
+  profileId         String?
+  relationshipNotes String?
+  createdAt         DateTime       @default(now())
+
+  source            Source         @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  milestone         Milestone?     @relation(fields: [milestoneId], references: [id], onDelete: Cascade)
+  initiative        Initiative?    @relation(fields: [initiativeId], references: [id], onDelete: Cascade)
+  profile           LeaderProfile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([sourceId])
+  @@index([milestoneId])
+  @@index([initiativeId])
+  @@index([profileId])
+}
+
+model MediaAsset {
+  id                 String         @id @default(cuid())
+  organisationId     String
+  storageKey         String
+  url                String?
+  mimeType           String
+  sizeBytes          Int
+  altText            String
+  caption            String?
+  attribution        String?
+  rightsStatus       RightsStatus   @default(PENDING_REVIEW)
+  permissionRecordId String?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  organisation       Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  permissionRecord   ConsentRecord? @relation(fields: [permissionRecordId], references: [id], onDelete: SetNull)
+
+  @@index([organisationId])
+}
+
+model ConsentRecord {
+  id                String         @id @default(cuid())
+  organisationId    String
+  profileId         String
+  grantedBy         String
+  scope             ConsentScope   @default(PROFILE_PUBLICATION)
+  grantedAt         DateTime
+  expiresAt         DateTime?
+  revokedAt         DateTime?
+  evidenceReference String?
+  notes             String?        @db.Text
+  reviewStatus      ConsentStatus  @default(VALID)
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  organisation      Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  profile           LeaderProfile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  mediaAssets       MediaAsset[]
+
+  @@index([profileId])
+  @@index([organisationId])
+}
+
+model Revision {
+  id              String           @id @default(cuid())
+  profileId       String
+  version         Int
+  contentSnapshot Json
+  reviewStatus    ReviewStatus     @default(DRAFT)
+  submittedById   String?
+  submittedAt     DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  profile         LeaderProfile    @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  submittedBy     User?            @relation("RevisionSubmitter", fields: [submittedById], references: [id], onDelete: SetNull)
+  decisions       ReviewDecision[]
+
+  @@index([profileId, version])
+}
+
+model ReviewDecision {
+  id         String       @id @default(cuid())
+  revisionId String
+  reviewerId String
+  decision   DecisionType
+  reason     String?      @db.Text
+  createdAt  DateTime     @default(now())
+
+  revision   Revision     @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+  reviewer   User         @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  @@index([revisionId])
+}
+
+model AuditEvent {
+  id             String       @id @default(cuid())
+  organisationId String
+  actorId        String?
+  action         String
+  entityType     String
+  entityId       String
+  metadata       Json?
+  createdAt      DateTime     @default(now())
+
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+
+  @@index([organisationId, createdAt])
+}
+
+model CorrectionRequest {
+  id                  String   @id @default(cuid())
+  profileId           String?
+  profileSlug         String?
+  claimOrSection      String
+  description         String   @db.Text
+  suggestedCorrection String   @db.Text
+  evidenceUrl         String?
+  submitterName       String
+  submitterEmail      String
+  status              String   @default("PENDING")
+  reviewedNotes       String?  @db.Text
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([status])
+}
