@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { PublicationStatus, Role } from "@prisma/client";
+import LeaderAvatar from "@/components/profile/LeaderAvatar";
 import {
   PlusCircle,
   Search,
@@ -69,7 +70,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
     switch (st) {
       case PublicationStatus.PUBLISHED:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#E9F5EE] text-[#1A633F] border border-[#C2E2CE]">
             <CheckCircle2 className="w-3 h-3" />
             Published
           </span>
@@ -108,22 +109,22 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5E5E0] pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E6E1DA] pb-6">
         <div>
-          <span className="text-xs font-semibold text-[#8A1C2C] uppercase tracking-wider">
+          <span className="text-xs font-semibold text-[#922036] uppercase tracking-wider">
             Directory Catalog
           </span>
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#191A1C] mt-1">
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#17191B] mt-1">
             Leadership Profile Manager
           </h1>
-          <p className="text-xs sm:text-sm text-[#5E6066]">
+          <p className="text-xs sm:text-sm text-[#68645F]">
             Manage biographies, revisions, verification states, and publication status.
           </p>
         </div>
 
         <Link
           href="/studio/leaders/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422] transition-colors shadow-2xs shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#7A1629] transition-colors shadow-2xs shrink-0"
         >
           <PlusCircle className="w-4 h-4" />
           <span>New Profile</span>
@@ -131,7 +132,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-xl border border-[#E5E5E0] editorial-shadow flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="bg-white p-4 rounded-xl border border-[#E6E1DA] editorial-shadow flex flex-col sm:flex-row items-center justify-between gap-3">
         <form method="GET" action="/studio/leaders" className="flex items-center gap-3 w-full sm:w-auto flex-1">
           <div className="relative flex-1 max-w-md">
             <input
@@ -139,7 +140,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
               name="search"
               defaultValue={searchQuery}
               placeholder="Filter by name, slug or designation..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036] text-[#17191B]"
             />
             <Search className="w-3.5 h-3.5 text-[#888] absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
@@ -147,7 +148,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
           <select
             name="status"
             defaultValue={filterStatus}
-            className="px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+            className="px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036] text-[#17191B]"
           >
             <option value="ALL">All Statuses</option>
             <option value="PUBLISHED">Published</option>
@@ -159,22 +160,22 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
 
           <button
             type="submit"
-            className="px-3 py-1.5 bg-[#8A1C2C] text-white rounded-lg text-xs font-semibold hover:bg-[#721422]"
+            className="px-3 py-1.5 bg-[#922036] text-white rounded-lg text-xs font-semibold hover:bg-[#7A1629]"
           >
             Filter
           </button>
         </form>
 
-        <span className="text-xs text-[#65676B] shrink-0">
+        <span className="text-xs text-[#68645F] shrink-0">
           Showing <strong>{profiles.length}</strong> profiles
         </span>
       </div>
 
       {/* Profiles Table */}
-      <div className="bg-white rounded-xl border border-[#E5E5E0] editorial-shadow overflow-hidden">
+      <div className="bg-white rounded-xl border border-[#E6E1DA] editorial-shadow overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FAF8F5] border-b border-[#E5E5E0] text-[#65676B] uppercase font-semibold">
+            <thead className="bg-[#FAF8F5] border-b border-[#E6E1DA] text-[#68645F] uppercase font-semibold">
               <tr>
                 <th className="py-3 px-4">Leader Profile</th>
                 <th className="py-3 px-4">Current Public Role</th>
@@ -184,7 +185,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#F0F0EB] text-[#191A1C]">
+            <tbody className="divide-y divide-[#E6E1DA]/60 text-[#17191B]">
               {profiles.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-8 text-center text-[#888] italic">
@@ -193,34 +194,33 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
                 </tr>
               ) : (
                 profiles.map((p) => (
-                  <tr key={p.id} className="hover:bg-[#FAF8F5]/80 transition-colors">
+                  <tr key={p.id} className="hover:bg-[#F8F6F2]/80 transition-colors">
                     {/* Leader Identity */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        {p.portraitUrl ? (
-                          <img
+                        <div className="w-10 h-12 shrink-0">
+                          <LeaderAvatar
                             src={p.portraitUrl}
-                            alt={p.displayName}
-                            className="w-10 h-10 rounded-lg object-cover object-top border border-[#E0E0DB]"
+                            name={p.displayName}
+                            kannadaName={p.kannadaName}
+                            size="sm"
+                            aspect="portrait"
+                            className="w-full h-full"
                           />
-                        ) : (
-                          <div className="w-10 h-10 rounded-lg bg-[#EFEFEA] text-[#888] flex items-center justify-center font-bold">
-                            {p.displayName.charAt(0)}
-                          </div>
-                        )}
+                        </div>
                         <div>
                           <Link
                             href={`/studio/leaders/${p.id}/edit`}
-                            className="font-bold text-sm text-[#191A1C] hover:text-[#8A1C2C]"
+                            className="font-bold text-sm text-[#17191B] hover:text-[#922036]"
                           >
                             {p.displayName}
                           </Link>
                           {p.kannadaName && (
-                            <p className="text-[11px] font-kannada font-semibold text-[#8A1C2C]">
+                            <p className="text-[11px] font-kannada font-semibold text-[#922036]">
                               {p.kannadaName}
                             </p>
                           )}
-                          <span className="text-[10px] text-[#707278] font-mono">slug: {p.slug}</span>
+                          <span className="text-[10px] text-[#68645F] font-mono">slug: {p.slug}</span>
                         </div>
                       </div>
                     </td>
@@ -228,7 +228,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
                     {/* Role & Constituency */}
                     <td className="py-3.5 px-4">
                       <span className="font-semibold block text-xs">{p.currentRole}</span>
-                      <span className="text-[11px] text-[#65676B]">{p.constituency || "Karnataka"}</span>
+                      <span className="text-[11px] text-[#68645F]">{p.constituency || "Karnataka"}</span>
                     </td>
 
                     {/* Status Badge */}
@@ -243,7 +243,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/studio/leaders/${p.id}/edit`}
-                          className="p-1.5 rounded border border-[#E0E0DB] hover:bg-white text-[#4A4B4F] hover:text-[#8A1C2C] transition-colors"
+                          className="p-1.5 rounded border border-[#E6E1DA] hover:bg-white text-[#68645F] hover:text-[#922036] transition-colors"
                           title="Edit Profile & Milestones"
                         >
                           <Edit3 className="w-3.5 h-3.5" />
@@ -253,7 +253,7 @@ export default async function LeadersManagerPage({ searchParams }: ProfileManage
                           <Link
                             href={`/leaders/${p.slug}`}
                             target="_blank"
-                            className="p-1.5 rounded border border-[#E0E0DB] hover:bg-white text-emerald-700 hover:text-emerald-800 transition-colors"
+                            className="p-1.5 rounded border border-[#E6E1DA] hover:bg-white text-[#1A633F] hover:text-emerald-800 transition-colors"
                             title="View Public Profile"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />

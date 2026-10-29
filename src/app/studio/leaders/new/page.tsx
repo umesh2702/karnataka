@@ -72,19 +72,19 @@ export default function NewLeaderProfilePage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#E5E5E0] pb-4">
+      <div className="flex items-center justify-between border-b border-[#E6E1DA] pb-4">
         <div className="flex items-center gap-3">
           <Link
             href="/studio/leaders"
-            className="p-1.5 rounded-md border border-[#E0E0DB] text-[#555] hover:text-[#191A1C] hover:bg-white transition-colors"
+            className="p-1.5 rounded-md border border-[#E6E1DA] text-[#68645F] hover:text-[#17191B] hover:bg-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="text-xl sm:text-2xl font-serif font-bold text-[#191A1C]">
+            <h1 className="text-xl sm:text-2xl font-serif font-bold text-[#17191B]">
               Create New Leadership Profile
             </h1>
-            <p className="text-xs text-[#65676B]">
+            <p className="text-xs text-[#68645F]">
               New profiles start in DRAFT status with initial revision v1
             </p>
           </div>
@@ -99,12 +99,12 @@ export default function NewLeaderProfilePage() {
       )}
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-6">
+      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Display Name */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
-              Display Name (English) <span className="text-red-500">*</span>
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
+              Display Name (English) <span className="text-[#922036]">*</span>
             </label>
             <input
               type="text"
@@ -112,13 +112,13 @@ export default function NewLeaderProfilePage() {
               placeholder="e.g. D. K. Shivakumar"
               value={formData.displayName}
               onChange={handleNameChange}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
             />
           </div>
 
           {/* Kannada Name */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
               Name in Kannada (Verified Script)
             </label>
             <input
@@ -126,14 +126,14 @@ export default function NewLeaderProfilePage() {
               placeholder="e.g. ಡಿ. ಕೆ. ಶಿವಕುಮಾರ್"
               value={formData.kannadaName}
               onChange={(e) => setFormData({ ...formData, kannadaName: e.target.value })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C] font-kannada"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036] font-kannada"
             />
           </div>
 
           {/* Slug */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
-              Unique URL Slug <span className="text-red-500">*</span>
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
+              Unique URL Slug <span className="text-[#922036]">*</span>
             </label>
             <input
               type="text"
@@ -141,31 +141,31 @@ export default function NewLeaderProfilePage() {
               placeholder="dk-shivakumar"
               value={formData.slug}
               onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "") })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C] font-mono text-xs"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036] font-mono text-xs"
             />
-            <span className="text-[10px] text-[#707278] block mt-1">
+            <span className="text-[10px] text-[#68645F] block mt-1">
               Public URL: /leaders/{formData.slug || "slug"}
             </span>
           </div>
 
           {/* Current Role */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
-              Current Public Role / Portfolio <span className="text-red-500">*</span>
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
+              Current Public Role / Portfolio <span className="text-[#922036]">*</span>
             </label>
             <input
               type="text"
               required
-              placeholder="e.g. Deputy Chief Minister of Karnataka"
+              placeholder="e.g. Chief Minister of Karnataka"
               value={formData.currentRole}
               onChange={(e) => setFormData({ ...formData, currentRole: e.target.value })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
             />
           </div>
 
           {/* Organisation */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
               Public Organisation / Party
             </label>
             <input
@@ -173,13 +173,13 @@ export default function NewLeaderProfilePage() {
               placeholder="Government of Karnataka"
               value={formData.organisationName}
               onChange={(e) => setFormData({ ...formData, organisationName: e.target.value })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
             />
           </div>
 
           {/* Constituency */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
               Electoral Constituency
             </label>
             <input
@@ -187,13 +187,13 @@ export default function NewLeaderProfilePage() {
               placeholder="e.g. Kanakapura (AC No. 184)"
               value={formData.constituency}
               onChange={(e) => setFormData({ ...formData, constituency: e.target.value })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
             />
           </div>
 
           {/* Region */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
               Region / Administrative Division
             </label>
             <input
@@ -201,13 +201,13 @@ export default function NewLeaderProfilePage() {
               placeholder="e.g. Southern Karnataka / Bengaluru Region"
               value={formData.region}
               onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
             />
           </div>
 
           {/* Portrait URL */}
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
               Portrait Image URL (Permitted Asset)
             </label>
             <input
@@ -215,15 +215,15 @@ export default function NewLeaderProfilePage() {
               placeholder="https://... or /uploads/..."
               value={formData.portraitUrl}
               onChange={(e) => setFormData({ ...formData, portraitUrl: e.target.value })}
-              className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+              className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
             />
           </div>
         </div>
 
         {/* Short Bio */}
         <div>
-          <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
-            Short Sourced Introduction (Summary) <span className="text-red-500">*</span>
+          <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
+            Short Sourced Introduction (Summary) <span className="text-[#922036]">*</span>
           </label>
           <textarea
             required
@@ -231,14 +231,14 @@ export default function NewLeaderProfilePage() {
             placeholder="Concise 1-2 sentence verified summary for directory cards and header preview..."
             value={formData.shortBio}
             onChange={(e) => setFormData({ ...formData, shortBio: e.target.value })}
-            className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+            className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
           />
         </div>
 
         {/* Full Biography */}
         <div>
-          <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1.5">
-            Detailed Public Biography & Education Background <span className="text-red-500">*</span>
+          <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
+            Detailed Public Biography & Education Background <span className="text-[#922036]">*</span>
           </label>
           <textarea
             required
@@ -246,15 +246,15 @@ export default function NewLeaderProfilePage() {
             placeholder="Comprehensive documented biography covering academic degrees, early public service, legislative elections, and executive portfolios..."
             value={formData.biography}
             onChange={(e) => setFormData({ ...formData, biography: e.target.value })}
-            className="w-full px-3.5 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#8A1C2C]"
+            className="w-full px-3.5 py-2 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
           />
         </div>
 
         {/* Form Actions */}
-        <div className="pt-4 border-t border-[#EFEFEA] flex items-center justify-between">
+        <div className="pt-4 border-t border-[#E6E1DA] flex items-center justify-between">
           <Link
             href="/studio/leaders"
-            className="px-4 py-2 border border-[#D5D5D0] rounded-lg text-xs font-semibold text-[#555] hover:bg-[#FAF8F5]"
+            className="px-4 py-2 border border-[#E6E1DA] rounded-lg text-xs font-semibold text-[#68645F] hover:bg-[#F8F6F2]"
           >
             Cancel
           </Link>
@@ -262,7 +262,7 @@ export default function NewLeaderProfilePage() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422] transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a] transition-colors disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? "Creating Draft..." : "Save Draft Profile"}</span>

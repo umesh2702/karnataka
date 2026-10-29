@@ -78,11 +78,6 @@ export default function EditLeaderProfilePage() {
     consentRecords: { id: string; scope: string; reviewStatus: string }[];
   } | null>(null);
 
-  useEffect(() => {
-    fetchProfile();
-    fetchSources();
-  }, [id]);
-
   const fetchProfile = async () => {
     try {
       const res = await fetch(`/api/leaders/${id}`);
@@ -112,6 +107,11 @@ export default function EditLeaderProfilePage() {
       }
     } catch {}
   };
+
+  useEffect(() => {
+    fetchProfile();
+    fetchSources();
+  }, [id]);
 
   const handleSaveDraft = async () => {
     if (!profile) return;
@@ -284,20 +284,20 @@ export default function EditLeaderProfilePage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5E5E0] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E6E1DA] pb-4">
         <div className="flex items-center gap-3">
           <Link
             href="/studio/leaders"
-            className="p-1.5 rounded-md border border-[#E0E0DB] text-[#555] hover:text-[#191A1C] hover:bg-white transition-colors"
+            className="p-1.5 rounded-md border border-[#E0E0DB] text-[#555] hover:text-[#17191B] hover:bg-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-serif font-bold text-[#191A1C]">
+              <h1 className="text-xl sm:text-2xl font-serif font-bold text-[#17191B]">
                 {profile.displayName}
               </h1>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#8A1C2C]/10 text-[#8A1C2C]">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#922036]/10 text-[#922036]">
                 {profile.publicationStatus}
               </span>
             </div>
@@ -311,9 +311,9 @@ export default function EditLeaderProfilePage() {
             type="button"
             onClick={handleSaveDraft}
             disabled={saving}
-            className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#D5D5D0] rounded-lg bg-white text-xs font-semibold text-[#191A1C] hover:bg-[#FAF8F5] transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#D5D5D0] rounded-lg bg-white text-xs font-semibold text-[#17191B] hover:bg-[#F8F6F2] transition-colors disabled:opacity-50"
           >
-            <Save className="w-3.5 h-3.5 text-[#8A1C2C]" />
+            <Save className="w-3.5 h-3.5 text-[#922036]" />
             <span>{saving ? "Saving..." : "Save Draft"}</span>
           </button>
 
@@ -321,7 +321,7 @@ export default function EditLeaderProfilePage() {
             type="button"
             onClick={handleSubmitForReview}
             disabled={submittingRev}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422] transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a] transition-colors disabled:opacity-50"
           >
             <Send className="w-3.5 h-3.5" />
             <span>{submittingRev ? "Submitting..." : "Submit Revision"}</span>
@@ -356,14 +356,14 @@ export default function EditLeaderProfilePage() {
       )}
 
       {/* Tabs */}
-      <div className="flex border-b border-[#E5E5E0] text-xs font-semibold overflow-x-auto">
+      <div className="flex border-b border-[#E6E1DA] text-xs font-semibold overflow-x-auto">
         <button
           type="button"
           onClick={() => setActiveTab("basic")}
           className={`py-2.5 px-4 border-b-2 transition-colors shrink-0 ${
             activeTab === "basic"
-              ? "border-[#8A1C2C] text-[#8A1C2C]"
-              : "border-transparent text-[#65676B] hover:text-[#191A1C]"
+              ? "border-[#922036] text-[#922036]"
+              : "border-transparent text-[#65676B] hover:text-[#17191B]"
           }`}
         >
           Basic Information
@@ -374,8 +374,8 @@ export default function EditLeaderProfilePage() {
           onClick={() => setActiveTab("milestones")}
           className={`py-2.5 px-4 border-b-2 transition-colors shrink-0 ${
             activeTab === "milestones"
-              ? "border-[#8A1C2C] text-[#8A1C2C]"
-              : "border-transparent text-[#65676B] hover:text-[#191A1C]"
+              ? "border-[#922036] text-[#922036]"
+              : "border-transparent text-[#65676B] hover:text-[#17191B]"
           }`}
         >
           Milestones & Citations ({profile.milestones.length})
@@ -386,8 +386,8 @@ export default function EditLeaderProfilePage() {
           onClick={() => setActiveTab("initiatives")}
           className={`py-2.5 px-4 border-b-2 transition-colors shrink-0 ${
             activeTab === "initiatives"
-              ? "border-[#8A1C2C] text-[#8A1C2C]"
-              : "border-transparent text-[#65676B] hover:text-[#191A1C]"
+              ? "border-[#922036] text-[#922036]"
+              : "border-transparent text-[#65676B] hover:text-[#17191B]"
           }`}
         >
           Initiatives ({profile.initiatives.length})
@@ -398,8 +398,8 @@ export default function EditLeaderProfilePage() {
           onClick={() => setActiveTab("workflow")}
           className={`py-2.5 px-4 border-b-2 transition-colors shrink-0 ${
             activeTab === "workflow"
-              ? "border-[#8A1C2C] text-[#8A1C2C]"
-              : "border-transparent text-[#65676B] hover:text-[#191A1C]"
+              ? "border-[#922036] text-[#922036]"
+              : "border-transparent text-[#65676B] hover:text-[#17191B]"
           }`}
         >
           Workflow & Revisions ({profile.revisions?.length || 0})
@@ -410,8 +410,8 @@ export default function EditLeaderProfilePage() {
           onClick={() => setActiveTab("preview")}
           className={`py-2.5 px-4 border-b-2 transition-colors shrink-0 ${
             activeTab === "preview"
-              ? "border-[#8A1C2C] text-[#8A1C2C]"
-              : "border-transparent text-[#65676B] hover:text-[#191A1C]"
+              ? "border-[#922036] text-[#922036]"
+              : "border-transparent text-[#65676B] hover:text-[#17191B]"
           }`}
         >
           Profile Live Preview
@@ -420,114 +420,114 @@ export default function EditLeaderProfilePage() {
 
       {/* Tab 1: Basic Information */}
       {activeTab === "basic" && (
-        <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-5">
+        <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Display Name (English)
               </label>
               <input
                 type="text"
                 value={profile.displayName}
                 onChange={(e) => setProfile({ ...profile, displayName: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Name in Kannada (Verified Script)
               </label>
               <input
                 type="text"
                 value={profile.kannadaName || ""}
                 onChange={(e) => setProfile({ ...profile, kannadaName: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg font-kannada"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg font-kannada"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Current Role / Executive Portfolio
               </label>
               <input
                 type="text"
                 value={profile.currentRole}
                 onChange={(e) => setProfile({ ...profile, currentRole: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Constituency
               </label>
               <input
                 type="text"
                 value={profile.constituency || ""}
                 onChange={(e) => setProfile({ ...profile, constituency: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Public Organisation / Party
               </label>
               <input
                 type="text"
                 value={profile.organisationName || ""}
                 onChange={(e) => setProfile({ ...profile, organisationName: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Region
               </label>
               <input
                 type="text"
                 value={profile.region || ""}
                 onChange={(e) => setProfile({ ...profile, region: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
                 Portrait Image URL
               </label>
               <input
                 type="url"
                 value={profile.portraitUrl || ""}
                 onChange={(e) => setProfile({ ...profile, portraitUrl: e.target.value })}
-                className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
               Short Sourced Summary
             </label>
             <textarea
               rows={2}
               value={profile.shortBio}
               onChange={(e) => setProfile({ ...profile, shortBio: e.target.value })}
-              className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+              className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#191A1C] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1">
               Comprehensive Public Biography
             </label>
             <textarea
               rows={8}
               value={profile.biography}
               onChange={(e) => setProfile({ ...profile, biography: e.target.value })}
-              className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+              className="w-full px-3 py-2 text-sm bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
             />
           </div>
         </div>
@@ -543,7 +543,7 @@ export default function EditLeaderProfilePage() {
             <button
               type="button"
               onClick={addMilestone}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a]"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Milestone</span>
@@ -551,15 +551,15 @@ export default function EditLeaderProfilePage() {
           </div>
 
           {profile.milestones.length === 0 ? (
-            <div className="p-8 bg-white rounded-xl border border-[#E5E5E0] text-center text-xs text-[#888] italic">
+            <div className="p-8 bg-white rounded-xl border border-[#E6E1DA] text-center text-xs text-[#888] italic">
               No milestones added yet. Click &quot;Add Milestone&quot; to attach public career milestones.
             </div>
           ) : (
             <div className="space-y-4">
               {profile.milestones.map((m, idx) => (
-                <div key={idx} className="bg-white p-5 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-3">
+                <div key={idx} className="bg-white p-5 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#8A1C2C]">Milestone #{idx + 1}</span>
+                    <span className="text-xs font-bold text-[#922036]">Milestone #{idx + 1}</span>
                     <button
                       type="button"
                       onClick={() => removeMilestone(idx)}
@@ -572,7 +572,7 @@ export default function EditLeaderProfilePage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                     <div className="sm:col-span-3">
-                      <label className="block text-[11px] font-semibold text-[#191A1C] uppercase mb-1">
+                      <label className="block text-[11px] font-semibold text-[#17191B] uppercase mb-1">
                         Milestone Title
                       </label>
                       <input
@@ -583,12 +583,12 @@ export default function EditLeaderProfilePage() {
                           updated[idx].title = e.target.value;
                           setProfile({ ...profile, milestones: updated });
                         }}
-                        className="w-full px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                        className="w-full px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-[#191A1C] uppercase mb-1">
+                      <label className="block text-[11px] font-semibold text-[#17191B] uppercase mb-1">
                         Year
                       </label>
                       <input
@@ -599,13 +599,13 @@ export default function EditLeaderProfilePage() {
                           updated[idx].eventYear = e.target.value ? parseInt(e.target.value, 10) : null;
                           setProfile({ ...profile, milestones: updated });
                         }}
-                        className="w-full px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                        className="w-full px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#191A1C] uppercase mb-1">
+                    <label className="block text-[11px] font-semibold text-[#17191B] uppercase mb-1">
                       Description
                     </label>
                     <textarea
@@ -616,13 +616,13 @@ export default function EditLeaderProfilePage() {
                         updated[idx].description = e.target.value;
                         setProfile({ ...profile, milestones: updated });
                       }}
-                      className="w-full px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                      className="w-full px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
                     />
                   </div>
 
                   {/* Attached Sources Selection */}
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#191A1C] uppercase mb-1">
+                    <label className="block text-[11px] font-semibold text-[#17191B] uppercase mb-1">
                       Attached Citations (from Source Registry)
                     </label>
                     <select
@@ -632,7 +632,7 @@ export default function EditLeaderProfilePage() {
                         updated[idx].sourceIds = e.target.value ? [e.target.value] : [];
                         setProfile({ ...profile, milestones: updated });
                       }}
-                      className="w-full px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                      className="w-full px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
                     >
                       <option value="">No source linked</option>
                       {availableSources.map((s) => (
@@ -659,7 +659,7 @@ export default function EditLeaderProfilePage() {
             <button
               type="button"
               onClick={addInitiative}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a]"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Initiative</span>
@@ -667,15 +667,15 @@ export default function EditLeaderProfilePage() {
           </div>
 
           {profile.initiatives.length === 0 ? (
-            <div className="p-8 bg-white rounded-xl border border-[#E5E5E0] text-center text-xs text-[#888] italic">
+            <div className="p-8 bg-white rounded-xl border border-[#E6E1DA] text-center text-xs text-[#888] italic">
               No public initiatives recorded for this leader yet.
             </div>
           ) : (
             <div className="space-y-4">
               {profile.initiatives.map((init, idx) => (
-                <div key={idx} className="bg-white p-5 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-3">
+                <div key={idx} className="bg-white p-5 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#8A1C2C]">Initiative #{idx + 1}</span>
+                    <span className="text-xs font-bold text-[#922036]">Initiative #{idx + 1}</span>
                     <button
                       type="button"
                       onClick={() => removeInitiative(idx)}
@@ -686,7 +686,7 @@ export default function EditLeaderProfilePage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#191A1C] uppercase mb-1">
+                    <label className="block text-[11px] font-semibold text-[#17191B] uppercase mb-1">
                       Initiative Title
                     </label>
                     <input
@@ -697,12 +697,12 @@ export default function EditLeaderProfilePage() {
                         updated[idx].title = e.target.value;
                         setProfile({ ...profile, initiatives: updated });
                       }}
-                      className="w-full px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                      className="w-full px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#191A1C] uppercase mb-1">
+                    <label className="block text-[11px] font-semibold text-[#17191B] uppercase mb-1">
                       Description
                     </label>
                     <textarea
@@ -713,7 +713,7 @@ export default function EditLeaderProfilePage() {
                         updated[idx].description = e.target.value;
                         setProfile({ ...profile, initiatives: updated });
                       }}
-                      className="w-full px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                      className="w-full px-3 py-1.5 text-xs bg-[#F8F6F2] border border-[#E0E0DB] rounded-lg"
                     />
                   </div>
                 </div>
@@ -727,14 +727,14 @@ export default function EditLeaderProfilePage() {
       {activeTab === "workflow" && (
         <div className="space-y-6">
           {/* Publication Control Card */}
-          <div className="bg-white p-6 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-4">
-            <h2 className="font-serif font-bold text-lg text-[#191A1C]">
+          <div className="bg-white p-6 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-4">
+            <h2 className="font-serif font-bold text-lg text-[#17191B]">
               Publication Status & Controls
             </h2>
 
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-xs text-[#65676B]">Current State:</span>
-              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-[#8A1C2C]/10 text-[#8A1C2C]">
+              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-[#922036]/10 text-[#922036]">
                 {profile.publicationStatus}
               </span>
             </div>
@@ -778,7 +778,7 @@ export default function EditLeaderProfilePage() {
                   type="button"
                   onClick={handleSubmitForReview}
                   disabled={submittingRev}
-                  className="px-5 py-2 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422]"
+                  className="px-5 py-2 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a]"
                 >
                   Submit Revision for Review
                 </button>
@@ -787,15 +787,15 @@ export default function EditLeaderProfilePage() {
           </div>
 
           {/* Revisions History */}
-          <div className="bg-white p-6 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-4">
-            <h3 className="font-serif font-bold text-base text-[#191A1C]">
+          <div className="bg-white p-6 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-4">
+            <h3 className="font-serif font-bold text-base text-[#17191B]">
               Immutable Revisions History
             </h3>
             <div className="divide-y divide-[#F0F0EB] text-xs">
               {profile.revisions.map((rev) => (
                 <div key={rev.id} className="py-2.5 flex items-center justify-between">
                   <div>
-                    <span className="font-bold text-[#191A1C]">Version {rev.version}</span>
+                    <span className="font-bold text-[#17191B]">Version {rev.version}</span>
                     <span className="ml-2 text-[10px] text-[#707278] uppercase">{rev.reviewStatus}</span>
                   </div>
                   <span className="text-[11px] text-[#888]">
@@ -812,7 +812,7 @@ export default function EditLeaderProfilePage() {
 
       {/* Tab 5: Live Profile Preview */}
       {activeTab === "preview" && (
-        <div className="bg-white p-6 sm:p-10 rounded-xl border border-[#E5E5E0] editorial-shadow space-y-6">
+        <div className="bg-white p-6 sm:p-10 rounded-xl border border-[#E6E1DA] editorial-shadow space-y-6">
           <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 flex items-center gap-2">
             <Eye className="w-4 h-4 shrink-0 text-amber-600" />
             <span>
@@ -820,7 +820,7 @@ export default function EditLeaderProfilePage() {
             </span>
           </div>
 
-          <div className="space-y-4 border-b border-[#E5E5E0] pb-6">
+          <div className="space-y-4 border-b border-[#E6E1DA] pb-6">
             <div className="flex items-start gap-5">
               {profile.portraitUrl ? (
                 <img
@@ -834,11 +834,11 @@ export default function EditLeaderProfilePage() {
                 </div>
               )}
               <div className="space-y-1">
-                <h2 className="text-2xl font-serif font-bold text-[#191A1C]">{profile.displayName}</h2>
+                <h2 className="text-2xl font-serif font-bold text-[#17191B]">{profile.displayName}</h2>
                 {profile.kannadaName && (
-                  <p className="text-lg font-kannada font-bold text-[#8A1C2C]">{profile.kannadaName}</p>
+                  <p className="text-lg font-kannada font-bold text-[#922036]">{profile.kannadaName}</p>
                 )}
-                <p className="text-sm font-semibold text-[#8A1C2C]">{profile.currentRole}</p>
+                <p className="text-sm font-semibold text-[#922036]">{profile.currentRole}</p>
                 <p className="text-xs text-[#555]">{profile.constituency} • {profile.organisationName}</p>
               </div>
             </div>
@@ -847,7 +847,7 @@ export default function EditLeaderProfilePage() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-serif font-bold text-base text-[#191A1C]">Biography</h3>
+            <h3 className="font-serif font-bold text-base text-[#17191B]">Biography</h3>
             <p className="text-xs text-[#4A4B4F] leading-relaxed whitespace-pre-line">{profile.biography}</p>
           </div>
         </div>

@@ -34,11 +34,6 @@ export default function PermissionsManagementPage() {
   });
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    fetchRecords();
-    fetchProfiles();
-  }, []);
-
   const fetchRecords = async () => {
     try {
       const res = await fetch("/api/permissions");
@@ -64,6 +59,11 @@ export default function PermissionsManagementPage() {
       }
     } catch {}
   };
+
+  useEffect(() => {
+    fetchRecords();
+    fetchProfiles();
+  }, []);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,15 +95,15 @@ export default function PermissionsManagementPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5E5E0] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E6E1DA] pb-5">
         <div>
-          <span className="text-xs font-semibold text-[#8A1C2C] uppercase tracking-wider">
+          <span className="text-xs font-semibold text-[#922036] uppercase tracking-wider">
             Legal & Rights Registry
           </span>
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#191A1C] mt-1">
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#17191B] mt-1">
             Consent & Media Rights Management
           </h1>
-          <p className="text-xs sm:text-sm text-[#5E6066]">
+          <p className="text-xs sm:text-sm text-[#68645F]">
             Strict tracking of publication consent, fair-reporting public record exemptions, and portrait rights.
           </p>
         </div>
@@ -111,7 +111,7 @@ export default function PermissionsManagementPage() {
         <button
           type="button"
           onClick={() => setShowModal(true)}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#8A1C2C] text-white text-xs font-semibold hover:bg-[#721422] transition-colors shrink-0"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a] transition-colors shrink-0"
         >
           <Plus className="w-4 h-4" />
           <span>Record Consent Document</span>
@@ -119,8 +119,8 @@ export default function PermissionsManagementPage() {
       </div>
 
       {/* Security Privacy Callout */}
-      <div className="bg-[#FAF8F5] p-4 rounded-xl border border-[#E0E0DB] flex items-start gap-3 text-xs text-[#555]">
-        <Lock className="w-4 h-4 text-[#8A1C2C] shrink-0 mt-0.5" />
+      <div className="bg-[#F8F6F2] p-4 rounded-xl border border-[#E6E1DA] flex items-start gap-3 text-xs text-[#68645F]">
+        <Lock className="w-4 h-4 text-[#922036] shrink-0 mt-0.5" />
         <p>
           Private Legal Protection: Consent records, statutory exemptions, and internal license agreements stored here
           are strictly confined to authenticated studio reviewers. They are never rendered or exposed on public profile routes.
@@ -128,9 +128,9 @@ export default function PermissionsManagementPage() {
       </div>
 
       {/* Permissions Table */}
-      <div className="bg-white rounded-xl border border-[#E5E5E0] editorial-shadow overflow-hidden">
+      <div className="bg-white rounded-xl border border-[#E6E1DA] editorial-shadow overflow-hidden">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[#FAF8F5] border-b border-[#E5E5E0] text-[#65676B] uppercase font-semibold">
+          <thead className="bg-[#F8F6F2] border-b border-[#E6E1DA] text-[#68645F] uppercase font-semibold">
             <tr>
               <th className="py-3 px-4">Profile</th>
               <th className="py-3 px-4">Permission Scope</th>
@@ -140,30 +140,30 @@ export default function PermissionsManagementPage() {
               <th className="py-3 px-4">Grant Date</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#F0F0EB] text-[#191A1C]">
+          <tbody className="divide-y divide-[#E6E1DA]/60 text-[#17191B]">
             {loading ? (
               <tr>
-                <td colSpan={6} className="py-8 text-center text-[#888] italic">
+                <td colSpan={6} className="py-8 text-center text-[#68645F] italic">
                   Loading consent records...
                 </td>
               </tr>
             ) : records.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-8 text-center text-[#888] italic">
+                <td colSpan={6} className="py-8 text-center text-[#68645F] italic">
                   No consent records on file.
                 </td>
               </tr>
             ) : (
               records.map((r) => (
-                <tr key={r.id} className="hover:bg-[#FAF8F5]">
-                  <td className="py-3 px-4 font-bold text-[#191A1C]">{r.profile.displayName}</td>
+                <tr key={r.id} className="hover:bg-[#F8F6F2]">
+                  <td className="py-3 px-4 font-bold text-[#17191B]">{r.profile.displayName}</td>
                   <td className="py-3 px-4">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-[#EFEFEA] text-[#191A1C]">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-[#EFEFEA] text-[#17191B]">
                       {r.scope.replace(/_/g, " ")}
                     </span>
                   </td>
                   <td className="py-3 px-4 max-w-xs truncate">{r.grantedBy}</td>
-                  <td className="py-3 px-4 text-[#707278] max-w-xs truncate font-mono text-[11px]">
+                  <td className="py-3 px-4 text-[#68645F] max-w-xs truncate font-mono text-[11px]">
                     {r.evidenceReference || "Statutory record"}
                   </td>
                   <td className="py-3 px-4">
@@ -182,7 +182,7 @@ export default function PermissionsManagementPage() {
                       {r.reviewStatus}
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-[#707278]">
+                  <td className="py-3 px-4 text-[#68645F]">
                     {new Date(r.grantedAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" })}
                   </td>
                 </tr>
@@ -196,22 +196,22 @@ export default function PermissionsManagementPage() {
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-4">
-            <div className="flex items-center justify-between border-b border-[#E5E5E0] pb-3">
-              <h3 className="font-serif font-bold text-lg text-[#191A1C]">
+            <div className="flex items-center justify-between border-b border-[#E6E1DA] pb-3">
+              <h3 className="font-serif font-bold text-lg text-[#17191B]">
                 Record Consent or Usage Rights
               </h3>
-              <button onClick={() => setShowModal(false)} className="text-[#888] font-bold">
+              <button onClick={() => setShowModal(false)} className="text-[#68645F] hover:text-[#17191B] font-bold">
                 ✕
               </button>
             </div>
 
             <form onSubmit={handleCreate} className="space-y-3 text-xs">
               <div>
-                <label className="block font-bold text-[#191A1C] uppercase mb-1">Leader Profile *</label>
+                <label className="block font-bold text-[#17191B] uppercase mb-1">Leader Profile *</label>
                 <select
                   value={formData.profileId}
                   onChange={(e) => setFormData({ ...formData, profileId: e.target.value })}
-                  className="w-full px-3 py-2 bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                  className="w-full px-3 py-2 bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
                 >
                   {profiles.map((p) => (
                     <option key={p.id} value={p.id}>
@@ -222,7 +222,7 @@ export default function PermissionsManagementPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-[#191A1C] uppercase mb-1">
+                <label className="block font-bold text-[#17191B] uppercase mb-1">
                   Granted By / Legal Exemption Basis *
                 </label>
                 <input
@@ -231,17 +231,17 @@ export default function PermissionsManagementPage() {
                   placeholder="e.g. Office of Leader or Section 19 Fair Use Doctrine"
                   value={formData.grantedBy}
                   onChange={(e) => setFormData({ ...formData, grantedBy: e.target.value })}
-                  className="w-full px-3 py-2 bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                  className="w-full px-3 py-2 bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-[#191A1C] uppercase mb-1">Permission Scope</label>
+                  <label className="block font-bold text-[#17191B] uppercase mb-1">Permission Scope</label>
                   <select
                     value={formData.scope}
                     onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                    className="w-full px-3 py-2 bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                    className="w-full px-3 py-2 bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
                   >
                     <option value="PROFILE_PUBLICATION">Profile Publication</option>
                     <option value="PORTRAIT_USAGE">Portrait Usage</option>
@@ -251,11 +251,11 @@ export default function PermissionsManagementPage() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-[#191A1C] uppercase mb-1">Review Status</label>
+                  <label className="block font-bold text-[#17191B] uppercase mb-1">Review Status</label>
                   <select
                     value={formData.reviewStatus}
                     onChange={(e) => setFormData({ ...formData, reviewStatus: e.target.value })}
-                    className="w-full px-3 py-2 bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                    className="w-full px-3 py-2 bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
                   >
                     <option value="VALID">Valid</option>
                     <option value="NEEDS_REVIEW">Needs Review</option>
@@ -266,7 +266,7 @@ export default function PermissionsManagementPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-[#191A1C] uppercase mb-1">
+                <label className="block font-bold text-[#17191B] uppercase mb-1">
                   Evidence Reference / Document ID
                 </label>
                 <input
@@ -274,22 +274,22 @@ export default function PermissionsManagementPage() {
                   placeholder="e.g. DOC-2024-KLA-PERM-01"
                   value={formData.evidenceReference}
                   onChange={(e) => setFormData({ ...formData, evidenceReference: e.target.value })}
-                  className="w-full px-3 py-2 bg-[#FAF8F5] border border-[#E0E0DB] rounded-lg"
+                  className="w-full px-3 py-2 bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
                 />
               </div>
 
-              <div className="pt-3 border-t border-[#EFEFEA] flex justify-end gap-2">
+              <div className="pt-3 border-t border-[#E6E1DA] flex justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 border rounded-lg text-[#555]"
+                  className="px-4 py-2 border border-[#E6E1DA] rounded-lg text-[#68645F] hover:bg-[#F8F6F2]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-5 py-2 bg-[#8A1C2C] text-white rounded-lg font-semibold hover:bg-[#721422] disabled:opacity-50"
+                  className="px-5 py-2 bg-[#922036] text-white rounded-lg font-semibold hover:bg-[#78182a] disabled:opacity-50"
                 >
                   {submitting ? "Recording..." : "Record Consent"}
                 </button>

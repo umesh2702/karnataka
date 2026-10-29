@@ -1,35 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @layer base {
   :root {
-    --background: #F7F7F4;
-    --foreground: #191A1C;
+    --background: #F8F6F2;
+    --foreground: #17191B;
     --card: #FFFFFF;
-    --card-foreground: #191A1C;
-    --primary: #8A1C2C;
-    --primary-hover: #721422;
+    --card-foreground: #17191B;
+    --primary: #922036;
+    --primary-hover: #7A1629;
     --primary-foreground: #FFFFFF;
-    --muted: #EFEFEA;
-    --muted-foreground: #5E6066;
-    --accent: #F4E8EA;
-    --accent-foreground: #8A1C2C;
-    --border: #E5E5E0;
-    --input: #E5E5E0;
-    --ring: #8A1C2C;
+    --muted-rose: #D9A0A9;
+    --secondary-text: #68645F;
+    --border: #E6E1DA;
+    --border-subtle: #EFECE6;
+    --input: #E6E1DA;
+    --ring: #922036;
+    --verified-green: #1A633F;
+    --verified-bg: #E9F5EE;
+    --verified-border: #C2E2CE;
     --radius: 0.5rem;
   }
 
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Noto Sans Kannada", sans-serif;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Kannada", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, .font-serif {
-    font-family: "Georgia", "Cambria", "Times New Roman", "Noto Serif Kannada", serif;
+    font-family: "Playfair Display", "Cormorant Garamond", "Georgia", "Noto Serif Kannada", serif;
+    letter-spacing: -0.015em;
   }
 
   .font-kannada {
@@ -37,25 +40,25 @@
   }
 }
 
-/* Custom scrollbar */
+/* Custom editorial scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F0F0EC;
+  background: #F1EFEA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D1D1C7;
+  background: #D2CDC3;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A8A89C;
+  background: #B6B0A4;
 }
 
 /* Smooth motion with reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -63,15 +66,39 @@
   }
 }
 
-/* Subtle elevation */
+/* Editorial subtle elevation */
 .editorial-shadow {
-  box-shadow: 0 4px 20px -2px rgba(25, 26, 28, 0.05), 0 2px 6px -1px rgba(25, 26, 28, 0.03);
+  box-shadow: 0 2px 12px -2px rgba(23, 25, 27, 0.04), 0 1px 4px -1px rgba(23, 25, 27, 0.02);
+}
+
+.editorial-shadow-lg {
+  box-shadow: 0 16px 36px -6px rgba(23, 25, 27, 0.07), 0 4px 12px -2px rgba(23, 25, 27, 0.03);
 }
 
 .card-hover-effect {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
 }
 .card-hover-effect:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px -4px rgba(25, 26, 28, 0.08), 0 4px 12px -2px rgba(25, 26, 28, 0.04);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(23, 25, 27, 0.07), 0 2px 8px -2px rgba(23, 25, 27, 0.03);
+}
+
+/* Topographic & Cartographic Backgrounds */
+.topo-pattern {
+  background-image: radial-gradient(#922036 0.75px, transparent 0.75px);
+  background-size: 20px 20px;
+}
+
+.topo-lines {
+  background-image: 
+    repeating-radial-gradient(ellipse at 50% 50%, transparent, transparent 15px, rgba(146, 32, 54, 0.025) 16px, transparent 17px),
+    linear-gradient(to right, rgba(230, 225, 218, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 225, 218, 0.4) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+}
+
+/* Keyboard focus accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 2px solid #922036;
+  outline-offset: 2px;
 }

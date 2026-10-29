@@ -69,6 +69,7 @@ describe("PostgreSQL Database Persistence & Seed Data Verification", () => {
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("D. K. Shivakumar");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
+    expect(profile?.currentRole).toBe("Chief Minister of Karnataka");
     expect(profile?.milestones.length).toBeGreaterThanOrEqual(4);
     expect(profile?.initiatives.length).toBeGreaterThanOrEqual(1);
     expect(profile?.kannadaName).toBe("ಡಿ. ಕೆ. ಶಿವಕುಮಾರ್");
@@ -82,7 +83,7 @@ describe("PostgreSQL Database Persistence & Seed Data Verification", () => {
 
     expect(profile).not.toBeNull();
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
-    expect(profile?.currentRole).toBe("Chief Minister of Karnataka");
+    expect(profile?.currentRole).toBe("Former Chief Minister of Karnataka");
   });
 
   it("verifies Draft profile (Satish Jarkiholi) is not published and remains private", async () => {

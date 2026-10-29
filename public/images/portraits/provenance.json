@@ -1,0 +1,38 @@
+{
+  "dk-shivakumar": {
+    "localPath": "/images/portraits/dk-shivakumar.jpg",
+    "source": "Press Information Bureau (PIB), Government of India / Wikimedia Commons",
+    "license": "Government Open Data License - India (GODL-India) / Public Domain",
+    "author": "Press Information Bureau",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:DK_Shivakumar.jpg",
+    "subject": "D. K. Shivakumar, Chief Minister of Karnataka",
+    "verifiedDate": "2026-10-29T11:12:16.372Z"
+  },
+  "siddaramaiah": {
+    "localPath": "/images/portraits/siddaramaiah.jpg",
+    "source": "Press Information Bureau (PIB), Government of India / Wikimedia Commons",
+    "license": "Government Open Data License - India (GODL-India) / Public Domain",
+    "author": "Press Information Bureau",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Siddaramaiah.jpg",
+    "subject": "Siddaramaiah, Former Chief Minister of Karnataka",
+    "verifiedDate": "2026-10-29T11:12:17.102Z"
+  },
+  "g-parameshwara": {
+    "localPath": "/images/portraits/g-parameshwara.jpg",
+    "source": "Wikimedia Commons",
+    "license": "Creative Commons Attribution-Share Alike 4.0 International",
+    "author": "Wikimedia Contributor / Legislative dossier",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dr_G_Parameshwara.JPG",
+    "subject": "Dr. G. Parameshwara, Deputy Chief Minister of Karnataka",
+    "verifiedDate": "2026-10-29T11:12:17.322Z"
+  },
+  "priyank-kharge": {
+    "localPath": "/images/portraits/priyank-kharge.jpg",
+    "source": "Wikimedia Commons",
+    "license": "Creative Commons Attribution-Share Alike 4.0 International",
+    "author": "Wikimedia Contributor",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Priyank_Kharge.jpg",
+    "subject": "Priyank Kharge, Minister for IT/BT and RDPR",
+    "verifiedDate": "2026-10-29T11:12:17.376Z"
+  }
+}

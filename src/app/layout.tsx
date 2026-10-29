@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased scroll-smooth">
-      <body className="min-h-full flex flex-col bg-[#F7F7F4] text-[#191A1C]">
+      <body className="min-h-full flex flex-col bg-[#F8F6F2] text-[#17191B]">
         {children}
       </body>
     </html>
