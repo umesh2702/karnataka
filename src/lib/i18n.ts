@@ -4,6 +4,8 @@ export interface Translations {
   nav: {
     home: string;
     leaders: string;
+    constituencies: string;
+    schemes: string;
     about: string;
     corrections: string;
     studio: string;
@@ -15,6 +17,8 @@ export interface Translations {
     tagline: string;
     description: string;
     exploreBtn: string;
+    constituencyBtn: string;
+    schemesBtn: string;
     aboutBtn: string;
     featuredLabel: string;
     viewProfile: string;
@@ -76,6 +80,8 @@ export const translations: Record<Language, Translations> = {
     nav: {
       home: "Home",
       leaders: "Leaders Directory",
+      constituencies: "Constituencies",
+      schemes: "5 Guarantees",
       about: "Editorial Standards",
       corrections: "Submit Correction",
       studio: "Studio Admin",
@@ -83,19 +89,21 @@ export const translations: Record<Language, Translations> = {
       searchPlaceholder: "Search leader by name or role...",
     },
     hero: {
-      edition: "Karnataka Edition",
-      tagline: "Public Leadership. Clearly Documented.",
+      edition: "Karnataka Congress Platform",
+      tagline: "Leadership, Constituencies & Governance Initiatives.",
       description:
-        "An independent, source-aware digital publication platform documenting public service, career milestones, and legislative work across Karnataka.",
+        "A premium, source-aware documentation platform presenting verified leadership records, assembly constituency development profiles, and five guarantee citizen welfare architectures across Karnataka, powered by UCreates.",
       exploreBtn: "Explore Leaders Directory",
+      constituencyBtn: "Explore Constituencies",
+      schemesBtn: "The 5 Guarantees",
       aboutBtn: "Our Editorial Standards",
-      featuredLabel: "Featured Leadership Profile",
+      featuredLabel: "State Executive Leadership",
       viewProfile: "View Full Profile & Sources",
     },
     directory: {
-      title: "Karnataka Leadership Directory",
+      title: "Karnataka Congress Leadership Directory",
       subtitle:
-        "Verified public representatives and cabinet ministers, with citations linked to official legislative gazettes and public filings.",
+        "Verified cabinet ministers and MLAs with portfolios and public milestones cited directly from official legislative gazettes.",
       searchPlaceholder: "Search by leader name, constituency or portfolio...",
       filterRole: "Filter by Role",
       filterRegion: "Filter by Region",
@@ -125,7 +133,7 @@ export const translations: Record<Language, Translations> = {
       emptyTimeline: "No verified public milestones have been published for this profile yet.",
       emptyInitiatives: "No public initiatives currently listed under verified status.",
       independentDisclaimer:
-        "This profile is compiled by UCreates Leadership Studio using public legislative gazettes and verifiable reports. It is not an official government endorsement.",
+        "This profile is compiled by UCreates using public legislative gazettes and verifiable reports. It is not an official government endorsement.",
     },
     status: {
       published: "Published",
@@ -135,21 +143,23 @@ export const translations: Record<Language, Translations> = {
       archived: "Archived",
     },
     footer: {
-      tagline: "A Digital Record of Public Service.",
+      tagline: "Karnataka Congress Leadership & Constituency Platform.",
       disclaimer:
-        "UCreates Leadership Studio is an independent digital publishing platform. Not affiliated with or endorsed by the Government of Karnataka, Indian National Congress, or any political entity.",
+        "UCreates Karnataka Platform is an independent technology demonstration developed by UCreates. Official public data is sourced from Karnataka Legislative gazettes and department notices.",
       rights: "All rights reserved.",
       about: "About & Standards",
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       corrections: "Corrections & Updates",
-      karnatakaEdition: "Karnataka Edition v1.0",
+      karnatakaEdition: "Karnataka Platform — Powered by UCreates",
     },
   },
   kn: {
     nav: {
       home: "ಮುಖಪುಟ",
       leaders: "ನಾಯಕರ ಕೋಶ",
+      constituencies: "ಕ್ಷೇತ್ರಗಳು",
+      schemes: "೫ ಗ್ಯಾರಂಟಿಗಳು",
       about: "ಸಂಪಾದಕೀಯ ನೀತಿ",
       corrections: "ತಿದ್ದುಪಡಿ ಸಲ್ಲಿಸಿ",
       studio: "ಸ್ಟುಡಿಯೋ ಆಡಳಿತ",
@@ -157,13 +167,15 @@ export const translations: Record<Language, Translations> = {
       searchPlaceholder: "ನಾಯಕರ ಹೆಸರು ಅಥವಾ ಹುದ್ದೆ ಹುಡುಕಿ...",
     },
     hero: {
-      edition: "ಕರ್ನಾಟಕ ಆವೃತ್ತಿ",
-      tagline: "ಸಾರ್ವಜನಿಕ ನಾಯಕತ್ವ. ಸ್ಪಷ್ಟ ದಾಖಲೆ.",
+      edition: "ಕರ್ನಾಟಕ ಕಾಂಗ್ರೆಸ್ ವೇದಿಕೆ",
+      tagline: "ನಾಯಕತ್ವ, ಕ್ಷೇತ್ರಗಳು ಮತ್ತು ಅಭಿವೃದ್ಧಿ ಯೋಜನೆಗಳು.",
       description:
-        "ಕರ್ನಾಟಕದ ಸಾರ್ವಜನಿಕ ಪ್ರತಿನಿಧಿಗಳು, ಶಾಸಕಾಂಗ ಕಾರ್ಯಗಳು ಮತ್ತು ದಾಖಲಿತ ಸಾಧನೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ದಾಖಲಿಸುವ ಸ್ವತಂತ್ರ ಡಿಜಿಟಲ್ ವೇದಿಕೆ.",
+        "ಕರ್ನಾಟಕದ ಸಾರ್ವಜನಿಕ ಪ್ರತಿನಿಧಿಗಳು, ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳ ಸಮಗ್ರ ಮಾಹಿತಿ ಮತ್ತು ೫ ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ದಾಖಲಿಸುವ ಪ್ರೀಮಿಯಂ ಡಿಜಿಟಲ್ ವೇದಿಕೆ — ಯುಕ್ರಿಯೇಟ್ಸ್ (UCreates) ನಿರ್ಮಿತ.",
       exploreBtn: "ನಾಯಕರ ವಿವರಗಳನ್ನು ನೋಡಿ",
+      constituencyBtn: "ಕ್ಷೇತ್ರಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+      schemesBtn: "೫ ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು",
       aboutBtn: "ಸಂಪಾದಕೀಯ ಮಾನದಂಡಗಳು",
-      featuredLabel: "ಪ್ರಮುಖ ನಾಯಕರ ಪರಿಚಯ",
+      featuredLabel: "ರಾಜ್ಯ ಕಾರ್ಯಕಾರಿ ನಾಯಕತ್ವ",
       viewProfile: "ಸಂಪೂರ್ಣ ವಿವರ ಮತ್ತು ಆಧಾರಗಳು",
     },
     directory: {

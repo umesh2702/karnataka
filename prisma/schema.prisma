@@ -81,6 +81,34 @@ enum DecisionType {
   RETURNED_FOR_CORRECTION
 }
 
+enum ProjectStage {
+  PROPOSED
+  APPROVED
+  ONGOING
+  COMPLETED
+  DELAYED
+  CANCELLED
+}
+
+enum ProjectType {
+  GOVERNMENT_PROJECT
+  MLA_LOCAL_INITIATIVE
+}
+
+enum ReservationType {
+  GENERAL
+  SC
+  ST
+}
+
+enum IssueStatus {
+  SUBMITTED
+  ACKNOWLEDGED
+  UNDER_REVIEW
+  RESOLVED
+  CLOSED
+}
+
 model Organisation {
   id             String          @id @default(cuid())
   name           String
@@ -96,6 +124,9 @@ model Organisation {
   mediaAssets    MediaAsset[]
   consentRecords ConsentRecord[]
   auditEvents    AuditEvent[]
+  constituencies Constituency[]
+  projects       WorkProject[]
+  schemes        GovernmentScheme[]
 }
 
 model User {
@@ -139,9 +170,16 @@ model LeaderProfile {
   shortBio            String
   biography           String            @db.Text
   currentRole         String
+  portfolio           String?
+  party               String            @default("Indian National Congress")
   organisationName    String?
   region              String?
+  district            String?
   constituency        String?
+  assemblyNumber      Int?
+  isMinister          Boolean           @default(false)
+  isMla               Boolean           @default(true)
+  isMlc               Boolean           @default(false)
   portraitAssetId     String?
   portraitUrl         String?
   publicationStatus   PublicationStatus @default(DRAFT)
@@ -157,10 +195,14 @@ model LeaderProfile {
   revisions           Revision[]
   consentRecords      ConsentRecord[]
   claimSources        ClaimSource[]
+  constituencyRecord  Constituency?
+  projects            WorkProject[]
 
   @@unique([organisationId, slug])
   @@index([publicationStatus])
   @@index([organisationId])
+  @@index([district])
+  @@index([isMinister])
 }
 
 model Milestone {
@@ -348,4 +390,113 @@ model CorrectionRequest {
   updatedAt           DateTime @updatedAt
 
   @@index([status])
+}
+
+model Constituency {
+  id               String              @id @default(cuid())
+  organisationId   String
+  number           Int                 @unique
+  name             String
+  kannadaName      String?
+  slug             String              @unique
+  district         String
+  region           String
+  reservation      ReservationType     @default(GENERAL)
+  totalElectors    Int?
+  summary          String?             @db.Text
+  status           String              @default("ACTIVE")
+  representativeId String?             @unique
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  organisation     Organisation        @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  representative   LeaderProfile?      @relation(fields: [representativeId], references: [id], onDelete: SetNull)
+  projects         WorkProject[]
+  issues           ConstituencyIssue[]
+
+  @@index([organisationId])
+  @@index([district])
+  @@index([region])
+}
+
+model WorkProject {
+  id                 String             @id @default(cuid())
+  organisationId     String
+  constituencyId     String?
+  leaderProfileId    String?
+  title              String
+  description        String             @db.Text
+  location           String?
+  department         String?
+  initiativeType     ProjectType        @default(GOVERNMENT_PROJECT)
+  stage              ProjectStage       @default(APPROVED)
+  budgetAmount       String?
+  fundingSource      String?
+  announcedDate      DateTime?
+  latestUpdateDate   DateTime?
+  verificationStatus VerificationStatus @default(UNCHECKED)
+  evidenceUrl        String?
+  lastVerifiedAt     DateTime?
+  publicationStatus  PublicationStatus  @default(PUBLISHED)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  organisation       Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  constituency       Constituency?      @relation(fields: [constituencyId], references: [id], onDelete: SetNull)
+  leaderProfile      LeaderProfile?     @relation(fields: [leaderProfileId], references: [id], onDelete: SetNull)
+
+  @@index([organisationId])
+  @@index([constituencyId])
+  @@index([leaderProfileId])
+  @@index([stage])
+  @@index([publicationStatus])
+}
+
+model GovernmentScheme {
+  id                 String             @id @default(cuid())
+  organisationId     String
+  name               String
+  kannadaName        String?
+  slug               String             @unique
+  tagline            String
+  description        String             @db.Text
+  department         String
+  eligibility        String             @db.Text
+  benefits           String             @db.Text
+  applicationUrl     String?
+  officialSourceUrl  String
+  verificationStatus VerificationStatus @default(VERIFIED)
+  publicationStatus  PublicationStatus  @default(PUBLISHED)
+  verifiedAt         DateTime           @default(now())
+  sortOrder          Int                @default(0)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  organisation       Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+
+  @@index([organisationId])
+  @@index([publicationStatus])
+  @@index([sortOrder])
+}
+
+model ConstituencyIssue {
+  id             String       @id @default(cuid())
+  constituencyId String
+  trackingCode   String       @unique
+  category       String
+  subject        String
+  description    String       @db.Text
+  citizenName    String
+  citizenEmail   String?
+  citizenPhone   String?
+  status         IssueStatus  @default(SUBMITTED)
+  adminNotes     String?      @db.Text
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  constituency   Constituency @relation(fields: [constituencyId], references: [id], onDelete: Cascade)
+
+  @@index([constituencyId])
+  @@index([status])
+  @@index([trackingCode])
 }

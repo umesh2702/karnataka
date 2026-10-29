@@ -33,6 +33,8 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: t.nav.home },
     { href: "/leaders", label: t.nav.leaders },
+    { href: "/constituencies", label: t.nav.constituencies },
+    { href: "/schemes", label: t.nav.schemes },
     { href: "/about", label: t.nav.about },
     { href: "/corrections", label: t.nav.corrections },
   ];
@@ -48,10 +50,10 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-serif font-bold text-lg tracking-tight text-[#17191B] leading-tight">
-                UCreates <span className="font-normal font-sans text-sm text-[#922036]">Leadership Studio</span>
+                Karnataka <span className="font-normal font-sans text-sm text-[#922036]">Congress Platform</span>
               </span>
-              <span className="text-[11px] font-medium uppercase tracking-wider text-[#68645F]">
-                Karnataka Edition
+              <span className="text-[11px] font-medium tracking-wide text-[#68645F]">
+                Leadership & Constituencies · Powered by UCreates
               </span>
             </div>
           </Link>

@@ -14,6 +14,10 @@ import {
   UserCheck,
   ExternalLink,
   PlusCircle,
+  MapPin,
+  Layers,
+  Sparkles,
+  FileCheck2,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -32,6 +36,10 @@ export default function Sidebar({ pendingReviewsCount = 0 }: SidebarProps) {
       icon: GitPullRequest,
       badge: pendingReviewsCount > 0 ? pendingReviewsCount : undefined,
     },
+    { href: "/studio/constituencies", label: "Constituencies", icon: MapPin },
+    { href: "/studio/projects", label: "Works & Projects", icon: Layers },
+    { href: "/studio/schemes", label: "5 Guarantees & Schemes", icon: Sparkles },
+    { href: "/studio/issues", label: "Citizen Enquiries", icon: FileCheck2 },
     { href: "/studio/sources", label: "Source Registry", icon: BookMarked },
     { href: "/studio/permissions", label: "Consent & Rights", icon: ShieldAlert },
     { href: "/studio/audit", label: "Audit Log", icon: History },

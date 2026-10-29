@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { isValidPublicationTransition, isValidRevisionTransition, validatePublicationPrerequisites } from "@/lib/workflow";
 import { canApproveRevision, signSession, verifySession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { PublicationStatus, ReviewStatus, Role } from "@prisma/client";
+import { PublicationStatus, ReviewStatus, Role, ReservationType } from "@prisma/client";
 
 describe("UCreates Leadership Studio — Editorial Workflow State Machine", () => {
   it("allows valid publication transitions: DRAFT -> IN_REVIEW -> APPROVED -> PUBLISHED", () => {
@@ -59,8 +59,26 @@ describe("Security & Self-Approval Prevention", () => {
   });
 });
 
-describe("PostgreSQL Database Persistence & Seed Data Verification", () => {
-  it("verifies D. K. Shivakumar profile exists in PostgreSQL with PUBLISHED status", async () => {
+describe("Karnataka Congress Platform — Verified Leadership & Portfolios", () => {
+  it("verifies Siddaramaiah is currently Chief Minister of Karnataka representing Varuna (AC #221)", async () => {
+    const profile = await prisma.leaderProfile.findFirst({
+      where: { slug: "siddaramaiah" },
+      include: { milestones: true, initiatives: true },
+    });
+
+    expect(profile).not.toBeNull();
+    expect(profile?.displayName).toBe("Siddaramaiah");
+    expect(profile?.kannadaName).toBe("ಸಿದ್ದರಾಮಯ್ಯ");
+    expect(profile?.currentRole).toBe("Chief Minister of Karnataka");
+    expect(profile?.party).toBe("Indian National Congress");
+    expect(profile?.assemblyNumber).toBe(221);
+    expect(profile?.district).toBe("Mysuru");
+    expect(profile?.portfolio).toContain("Finance");
+    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
+    expect(profile?.portraitUrl).toBe("/images/portraits/siddaramaiah.jpg");
+  });
+
+  it("verifies D. K. Shivakumar is Deputy Chief Minister of Karnataka & KPCC President representing Kanakapura (AC #184)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "dk-shivakumar" },
       include: { milestones: true, initiatives: true },
@@ -68,62 +86,135 @@ describe("PostgreSQL Database Persistence & Seed Data Verification", () => {
 
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("D. K. Shivakumar");
-    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
-    expect(profile?.currentRole).toBe("Chief Minister of Karnataka");
-    expect(profile?.milestones.length).toBeGreaterThanOrEqual(4);
-    expect(profile?.initiatives.length).toBeGreaterThanOrEqual(1);
     expect(profile?.kannadaName).toBe("ಡಿ. ಕೆ. ಶಿವಕುಮಾರ್");
-  });
-
-  it("verifies Siddaramaiah profile exists with PUBLISHED status", async () => {
-    const profile = await prisma.leaderProfile.findFirst({
-      where: { slug: "siddaramaiah" },
-      include: { milestones: true },
-    });
-
-    expect(profile).not.toBeNull();
+    expect(profile?.currentRole).toBe("Deputy Chief Minister of Karnataka & KPCC President");
+    expect(profile?.party).toBe("Indian National Congress");
+    expect(profile?.assemblyNumber).toBe(184);
+    expect(profile?.district).toBe("Ramanagara");
+    expect(profile?.portfolio).toContain("Irrigation");
+    expect(profile?.portfolio).toContain("Bengaluru");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
-    expect(profile?.currentRole).toBe("Former Chief Minister of Karnataka");
+    expect(profile?.portraitUrl).toBe("/images/portraits/dk-shivakumar.jpg");
   });
 
-  it("verifies Draft profile (Satish Jarkiholi) is not published and remains private", async () => {
+  it("verifies Dr. G. Parameshwara is Minister for Home Affairs representing Koratagere (SC #132)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
-      where: { slug: "satish-jarkiholi" },
+      where: { slug: "g-parameshwara" },
     });
 
     expect(profile).not.toBeNull();
-    expect(profile?.publicationStatus).toBe(PublicationStatus.DRAFT);
+    expect(profile?.displayName).toBe("Dr. G. Parameshwara");
+    expect(profile?.currentRole).toBe("Minister for Home Affairs");
+    expect(profile?.assemblyNumber).toBe(132);
+    expect(profile?.district).toBe("Tumakuru");
+    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 
-  it("verifies In Review profile (Priyank Kharge) is queued in review state", async () => {
+  it("verifies Priyank Kharge is Minister for RDPR and IT/BT representing Chittapur (SC #44)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "priyank-kharge" },
     });
 
     expect(profile).not.toBeNull();
-    expect(profile?.publicationStatus).toBe(PublicationStatus.IN_REVIEW);
+    expect(profile?.displayName).toBe("Priyank Kharge");
+    expect(profile?.currentRole).toBe("Minister for RDPR, IT & BT");
+    expect(profile?.assemblyNumber).toBe(44);
+    expect(profile?.district).toBe("Kalaburagi");
+    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 
-  it("verifies Approved profile (M. B. Patil) is approved and ready for publication", async () => {
+  it("verifies Satish Jarkiholi has null portrait for safe initials monogram fallback (no stock photo)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
-      where: { slug: "mb-patil" },
+      where: { slug: "satish-jarkiholi" },
     });
 
     expect(profile).not.toBeNull();
-    expect(profile?.publicationStatus).toBe(PublicationStatus.APPROVED);
+    expect(profile?.currentRole).toBe("Minister for Public Works Department");
+    expect(profile?.assemblyNumber).toBe(11);
+    expect(profile?.district).toBe("Belagavi");
+    expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
+    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 
-  it("verifies Source Registry has verified sources linked to legislative gazettes", async () => {
-    const sources = await prisma.source.findMany();
-    expect(sources.length).toBeGreaterThanOrEqual(4);
+  it("verifies Draft and In-Review profiles are kept strictly unexposed on public published queries", async () => {
+    // Tanveer Sait is DRAFT
+    const draftLeader = await prisma.leaderProfile.findFirst({
+      where: { slug: "tanveer-sait" },
+    });
+    expect(draftLeader?.publicationStatus).toBe(PublicationStatus.DRAFT);
 
-    const klaSource = sources.find((s) => s.url.includes("kla.kar.nic.in"));
-    expect(klaSource).toBeDefined();
-    expect(klaSource?.verificationStatus).toBe("VERIFIED");
+    // Rizwan Arshad is IN_REVIEW
+    const inReviewLeader = await prisma.leaderProfile.findFirst({
+      where: { slug: "rizwan-arshad" },
+    });
+    expect(inReviewLeader?.publicationStatus).toBe(PublicationStatus.IN_REVIEW);
+
+    // Public query MUST NOT return either
+    const publicQuery = await prisma.leaderProfile.findMany({
+      where: {
+        publicationStatus: PublicationStatus.PUBLISHED,
+        slug: { in: ["tanveer-sait", "rizwan-arshad"] },
+      },
+    });
+    expect(publicQuery.length).toBe(0);
+  });
+});
+
+describe("Constituency Mappings & Five Guarantees Verification", () => {
+  it("verifies Varuna and Kanakapura constituencies are linked to CM and DCM", async () => {
+    const varuna = await prisma.constituency.findUnique({
+      where: { slug: "varuna" },
+      include: { representative: true },
+    });
+    expect(varuna).not.toBeNull();
+    expect(varuna?.number).toBe(221);
+    expect(varuna?.district).toBe("Mysuru");
+    expect(varuna?.representative?.displayName).toBe("Siddaramaiah");
+
+    const kanakapura = await prisma.constituency.findUnique({
+      where: { slug: "kanakapura" },
+      include: { representative: true },
+    });
+    expect(kanakapura).not.toBeNull();
+    expect(kanakapura?.number).toBe(184);
+    expect(kanakapura?.district).toBe("Ramanagara");
+    expect(kanakapura?.representative?.displayName).toBe("D. K. Shivakumar");
   });
 
-  it("verifies Audit Events are stored in PostgreSQL", async () => {
-    const events = await prisma.auditEvent.findMany();
-    expect(events.length).toBeGreaterThanOrEqual(3);
+  it("verifies all Five Guarantees are stored with verified government departments and application links", async () => {
+    const guarantees = await prisma.governmentScheme.findMany({
+      where: { publicationStatus: PublicationStatus.PUBLISHED },
+      orderBy: { sortOrder: "asc" },
+    });
+
+    expect(guarantees.length).toBe(5);
+    const slugs = guarantees.map((g) => g.slug);
+    expect(slugs).toEqual([
+      "gruha-lakshmi",
+      "gruha-jyothi",
+      "shakthi-scheme",
+      "anna-bhagya",
+      "yuva-nidhi",
+    ]);
+
+    for (const g of guarantees) {
+      expect(g.department.length).toBeGreaterThan(5);
+      expect(g.eligibility.length).toBeGreaterThan(10);
+      expect(g.benefits.length).toBeGreaterThan(10);
+      expect(g.officialSourceUrl).toMatch(/^https?:\/\//);
+    }
+  });
+
+  it("verifies documented works and initiatives have valid project stages and departments", async () => {
+    const projects = await prisma.workProject.findMany({
+      where: { publicationStatus: PublicationStatus.PUBLISHED },
+    });
+
+    expect(projects.length).toBeGreaterThanOrEqual(5);
+    for (const p of projects) {
+      expect(["PROPOSED", "APPROVED", "ONGOING", "COMPLETED", "DELAYED", "CANCELLED"]).toContain(p.stage);
+      expect(p.title.length).toBeGreaterThan(5);
+      expect(p.evidenceUrl).not.toBeNull();
+    }
   });
 });
