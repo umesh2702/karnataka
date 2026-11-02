@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { isValidPublicationTransition, isValidRevisionTransition, validatePublicationPrerequisites } from "@/lib/workflow";
+import { isValidPublicationTransition, isValidRevisionTransition } from "@/lib/workflow";
 import { canApproveRevision, signSession, verifySession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { PublicationStatus, ReviewStatus, Role, ReservationType } from "@prisma/client";
+import { PublicationStatus, ReviewStatus, Role } from "@prisma/client";
 
 describe("UCreates Leadership Studio — Editorial Workflow State Machine", () => {
   it("allows valid publication transitions: DRAFT -> IN_REVIEW -> APPROVED -> PUBLISHED", () => {
@@ -59,26 +59,8 @@ describe("Security & Self-Approval Prevention", () => {
   });
 });
 
-describe("Karnataka Congress Platform — Verified Leadership & Portfolios", () => {
-  it("verifies Siddaramaiah is currently Chief Minister of Karnataka representing Varuna (AC #221)", async () => {
-    const profile = await prisma.leaderProfile.findFirst({
-      where: { slug: "siddaramaiah" },
-      include: { milestones: true, initiatives: true },
-    });
-
-    expect(profile).not.toBeNull();
-    expect(profile?.displayName).toBe("Siddaramaiah");
-    expect(profile?.kannadaName).toBe("ಸಿದ್ದರಾಮಯ್ಯ");
-    expect(profile?.currentRole).toBe("Chief Minister of Karnataka");
-    expect(profile?.party).toBe("Indian National Congress");
-    expect(profile?.assemblyNumber).toBe(221);
-    expect(profile?.district).toBe("Mysuru");
-    expect(profile?.portfolio).toContain("Finance");
-    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
-    expect(profile?.portraitUrl).toBe("/images/portraits/siddaramaiah.jpg");
-  });
-
-  it("verifies D. K. Shivakumar is Deputy Chief Minister of Karnataka & KPCC President representing Kanakapura (AC #184)", async () => {
+describe("Karnataka Congress Platform — Verified Leadership Showcase (6 Leaders)", () => {
+  it("verifies D. K. Shivakumar is Chief Minister of Karnataka representing Kanakapura (AC #184)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "dk-shivakumar" },
       include: { milestones: true, initiatives: true },
@@ -87,7 +69,7 @@ describe("Karnataka Congress Platform — Verified Leadership & Portfolios", () 
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("D. K. Shivakumar");
     expect(profile?.kannadaName).toBe("ಡಿ. ಕೆ. ಶಿವಕುಮಾರ್");
-    expect(profile?.currentRole).toBe("Deputy Chief Minister of Karnataka & KPCC President");
+    expect(profile?.currentRole).toBe("Chief Minister of Karnataka");
     expect(profile?.party).toBe("Indian National Congress");
     expect(profile?.assemblyNumber).toBe(184);
     expect(profile?.district).toBe("Ramanagara");
@@ -97,43 +79,86 @@ describe("Karnataka Congress Platform — Verified Leadership & Portfolios", () 
     expect(profile?.portraitUrl).toBe("/images/portraits/dk-shivakumar.jpg");
   });
 
-  it("verifies Dr. G. Parameshwara is Minister for Home Affairs representing Koratagere (SC #132)", async () => {
+  it("verifies Dr. G. Parameshwara is Deputy Chief Minister of Karnataka representing Koratagere (SC #132)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "g-parameshwara" },
     });
 
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("Dr. G. Parameshwara");
-    expect(profile?.currentRole).toBe("Minister for Home Affairs");
+    expect(profile?.currentRole).toBe("Deputy Chief Minister of Karnataka");
     expect(profile?.assemblyNumber).toBe(132);
     expect(profile?.district).toBe("Tumakuru");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
+    expect(profile?.portraitUrl).toBe("/images/portraits/g-parameshwara.jpg");
   });
 
-  it("verifies Priyank Kharge is Minister for RDPR and IT/BT representing Chittapur (SC #44)", async () => {
+  it("verifies Priyank Kharge is Cabinet Minister for RDPR, IT & BT representing Chittapur (SC #40)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "priyank-kharge" },
     });
 
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("Priyank Kharge");
-    expect(profile?.currentRole).toBe("Minister for RDPR, IT & BT");
-    expect(profile?.assemblyNumber).toBe(44);
+    expect(profile?.currentRole).toBe("Cabinet Minister for RDPR, IT & BT");
+    expect(profile?.assemblyNumber).toBe(40);
     expect(profile?.district).toBe("Kalaburagi");
+    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
+    expect(profile?.portraitUrl).toBe("/images/portraits/priyank-kharge.jpg");
+  });
+
+  it("verifies M. B. Patil is Cabinet Minister for Large & Medium Industries representing Babaleshwar (AC #29)", async () => {
+    const profile = await prisma.leaderProfile.findFirst({
+      where: { slug: "mb-patil" },
+    });
+
+    expect(profile).not.toBeNull();
+    expect(profile?.displayName).toBe("M. B. Patil");
+    expect(profile?.currentRole).toBe("Cabinet Minister for Large & Medium Industries");
+    expect(profile?.assemblyNumber).toBe(29);
+    expect(profile?.district).toBe("Vijayapura");
+    expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 
-  it("verifies Satish Jarkiholi has null portrait for safe initials monogram fallback (no stock photo)", async () => {
+  it("verifies Satish Jarkiholi is Cabinet Minister for Public Works representing Yemkanmardi (ST #11)", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "satish-jarkiholi" },
     });
 
     expect(profile).not.toBeNull();
-    expect(profile?.currentRole).toBe("Minister for Public Works Department");
+    expect(profile?.displayName).toBe("Satish Jarkiholi");
+    expect(profile?.currentRole).toBe("Cabinet Minister for Public Works");
     expect(profile?.assemblyNumber).toBe(11);
     expect(profile?.district).toBe("Belagavi");
     expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
+  });
+
+  it("verifies Krishna Byre Gowda is Cabinet Minister for Revenue representing Byatarayanapura (AC #152)", async () => {
+    const profile = await prisma.leaderProfile.findFirst({
+      where: { slug: "krishna-byre-gowda" },
+    });
+
+    expect(profile).not.toBeNull();
+    expect(profile?.displayName).toBe("Krishna Byre Gowda");
+    expect(profile?.currentRole).toBe("Cabinet Minister for Revenue");
+    expect(profile?.assemblyNumber).toBe(152);
+    expect(profile?.district).toBe("Bengaluru Urban");
+    expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
+    expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
+  });
+
+  it("verifies Siddaramaiah is designated as Former Chief Minister and not current Chief Minister", async () => {
+    const profile = await prisma.leaderProfile.findFirst({
+      where: { slug: "siddaramaiah" },
+    });
+
+    expect(profile).not.toBeNull();
+    expect(profile?.currentRole).toBe("Former Chief Minister & Senior CLP Leader");
+    expect(profile?.isMinister).toBe(false);
+    expect(profile?.assemblyNumber).toBe(221);
+    expect(profile?.district).toBe("Mysuru");
   });
 
   it("verifies Draft and In-Review profiles are kept strictly unexposed on public published queries", async () => {
@@ -161,16 +186,7 @@ describe("Karnataka Congress Platform — Verified Leadership & Portfolios", () 
 });
 
 describe("Constituency Mappings & Five Guarantees Verification", () => {
-  it("verifies Varuna and Kanakapura constituencies are linked to CM and DCM", async () => {
-    const varuna = await prisma.constituency.findUnique({
-      where: { slug: "varuna" },
-      include: { representative: true },
-    });
-    expect(varuna).not.toBeNull();
-    expect(varuna?.number).toBe(221);
-    expect(varuna?.district).toBe("Mysuru");
-    expect(varuna?.representative?.displayName).toBe("Siddaramaiah");
-
+  it("verifies Kanakapura and Koratagere constituencies are linked to CM and DCM", async () => {
     const kanakapura = await prisma.constituency.findUnique({
       where: { slug: "kanakapura" },
       include: { representative: true },
@@ -179,6 +195,15 @@ describe("Constituency Mappings & Five Guarantees Verification", () => {
     expect(kanakapura?.number).toBe(184);
     expect(kanakapura?.district).toBe("Ramanagara");
     expect(kanakapura?.representative?.displayName).toBe("D. K. Shivakumar");
+
+    const koratagere = await prisma.constituency.findUnique({
+      where: { slug: "koratagere" },
+      include: { representative: true },
+    });
+    expect(koratagere).not.toBeNull();
+    expect(koratagere?.number).toBe(132);
+    expect(koratagere?.district).toBe("Tumakuru");
+    expect(koratagere?.representative?.displayName).toBe("Dr. G. Parameshwara");
   });
 
   it("verifies all Five Guarantees are stored with verified government departments and application links", async () => {

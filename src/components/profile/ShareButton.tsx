@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Share2, Check, Copy } from "lucide-react";
+import { Share2, Check } from "lucide-react";
 
 export default function ShareButton({ title }: { title: string }) {
   const [copied, setCopied] = useState(false);
@@ -19,7 +19,8 @@ export default function ShareButton({ title }: { title: string }) {
     <button
       onClick={handleShare}
       className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md border border-[#D5D5D0] bg-white text-[#191A1C] text-xs font-semibold hover:bg-[#FAF8F5] transition-colors shadow-2xs"
-      title="Copy profile link"
+      title={`Copy link to ${title}'s leadership profile`}
+      aria-label={`Copy link to ${title}'s leadership profile`}
     >
       {copied ? (
         <>

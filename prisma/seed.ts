@@ -247,18 +247,18 @@ async function main() {
     update: {
       displayName: "Siddaramaiah",
       kannadaName: "ಸಿದ್ದರಾಮಯ್ಯ",
-      currentRole: "Chief Minister of Karnataka",
+      currentRole: "Former Chief Minister & Senior CLP Leader",
       party: "Indian National Congress",
-      portfolio: "Chief Minister, Finance, Cabinet Affairs, DPAR, Intelligence, Information and Public Relations",
+      portfolio: "Former Chief Minister of Karnataka (2013–2018, 2023–2026), Congress Legislature Party Senior Leader",
       organisationName: "Government of Karnataka",
       district: "Mysuru",
       region: "Old Mysuru Region",
       constituency: "Varuna (Assembly Constituency No. 221)",
       assemblyNumber: 221,
-      isMinister: true,
+      isMinister: false,
       isMla: true,
       isMlc: false,
-      shortBio: "Chief Minister of Karnataka holding Finance, DPAR and Cabinet Affairs; veteran parliamentarian and record 15-time state budget presenter representing Varuna.",
+      shortBio: "Former Chief Minister of Karnataka (2013–2018, 2023–2026) and senior CLP leader; veteran parliamentarian and record 15-time state budget presenter representing Varuna.",
       biography: `Siddaramaiah (born 12 August 1948) is an Indian politician and administrator serving as the Chief Minister of Karnataka. A senior leader of the Indian National Congress and champion of social justice, he has represented Varuna and Chamundeshwari in the Karnataka Legislative Assembly across nine legislative terms.\n\nEducation and Legal Career:\nBorn in Siddaramanahundi, Mysuru district, he graduated with a Bachelor of Science from Yuvaraja College, University of Mysore, and earned a Bachelor of Laws (LL.B.) from Vidyavardhaka Law College in Mysuru, practicing law briefly before entering active public life.\n\nLegislative Journey:\nFirst elected to the Karnataka Legislative Assembly in 1983 from Chamundeshwari, Siddaramaiah has served as Minister for Sericulture and Animal Husbandry, Finance Minister, and twice as Deputy Chief Minister (1996–1999 and 2004–2005). He has presented 15 state budgets—a record in Karnataka legislative history.\n\nChief Ministerial Tenures:\nIn May 2013, he became the 22nd Chief Minister of Karnataka, completing a full five-year term (2013–2018). Following the 2023 assembly elections in which the Congress party won a decisive majority of 135 seats, Siddaramaiah was sworn in for his second tenure as Chief Minister on 20 May 2023. Under his leadership, the state launched the landmark Five Guarantees citizen welfare architecture.`,
       portraitUrl: "/images/portraits/siddaramaiah.jpg",
       publicationStatus: PublicationStatus.PUBLISHED,
@@ -269,18 +269,18 @@ async function main() {
       slug: "siddaramaiah",
       displayName: "Siddaramaiah",
       kannadaName: "ಸಿದ್ದರಾಮಯ್ಯ",
-      currentRole: "Chief Minister of Karnataka",
+      currentRole: "Former Chief Minister & Senior CLP Leader",
       party: "Indian National Congress",
-      portfolio: "Chief Minister, Finance, Cabinet Affairs, DPAR, Intelligence, Information and Public Relations",
+      portfolio: "Former Chief Minister of Karnataka (2013–2018, 2023–2026), Congress Legislature Party Senior Leader",
       organisationName: "Government of Karnataka",
       district: "Mysuru",
       region: "Old Mysuru Region",
       constituency: "Varuna (Assembly Constituency No. 221)",
       assemblyNumber: 221,
-      isMinister: true,
+      isMinister: false,
       isMla: true,
       isMlc: false,
-      shortBio: "Chief Minister of Karnataka holding Finance, DPAR and Cabinet Affairs; veteran parliamentarian and record 15-time state budget presenter representing Varuna.",
+      shortBio: "Former Chief Minister of Karnataka (2013–2018, 2023–2026) and senior CLP leader; veteran parliamentarian and record 15-time state budget presenter representing Varuna.",
       biography: `Siddaramaiah (born 12 August 1948) is an Indian politician and administrator serving as the Chief Minister of Karnataka. A senior leader of the Indian National Congress and champion of social justice, he has represented Varuna and Chamundeshwari in the Karnataka Legislative Assembly across nine legislative terms.\n\nEducation and Legal Career:\nBorn in Siddaramanahundi, Mysuru district, he graduated with a Bachelor of Science from Yuvaraja College, University of Mysore, and earned a Bachelor of Laws (LL.B.) from Vidyavardhaka Law College in Mysuru, practicing law briefly before entering active public life.\n\nLegislative Journey:\nFirst elected to the Karnataka Legislative Assembly in 1983 from Chamundeshwari, Siddaramaiah has served as Minister for Sericulture and Animal Husbandry, Finance Minister, and twice as Deputy Chief Minister (1996–1999 and 2004–2005). He has presented 15 state budgets—a record in Karnataka legislative history.\n\nChief Ministerial Tenures:\nIn May 2013, he became the 22nd Chief Minister of Karnataka, completing a full five-year term (2013–2018). Following the 2023 assembly elections in which the Congress party won a decisive majority of 135 seats, Siddaramaiah was sworn in for his second tenure as Chief Minister on 20 May 2023. Under his leadership, the state launched the landmark Five Guarantees citizen welfare architecture.`,
       portraitUrl: "/images/portraits/siddaramaiah.jpg",
       publicationStatus: PublicationStatus.PUBLISHED,
@@ -393,7 +393,7 @@ async function main() {
     data: { publishedRevisionId: siddaRevision.id },
   });
 
-  console.log("✓ Profile 1: Siddaramaiah (Chief Minister of Karnataka - PUBLISHED)");
+  console.log("✓ Profile 1: Siddaramaiah (Former Chief Minister - PUBLISHED)");
 
   // Leader 2: D. K. Shivakumar (Deputy Chief Minister & KPCC President)
   const dksProfile = await prisma.leaderProfile.upsert({
@@ -401,9 +401,9 @@ async function main() {
     update: {
       displayName: "D. K. Shivakumar",
       kannadaName: "ಡಿ. ಕೆ. ಶಿವಕುಮಾರ್",
-      currentRole: "Deputy Chief Minister of Karnataka & KPCC President",
+      currentRole: "Chief Minister of Karnataka",
       party: "Indian National Congress",
-      portfolio: "Deputy Chief Minister, Major and Medium Irrigation, Bengaluru City Development",
+      portfolio: "Chief Minister, Major & Medium Irrigation, Bengaluru City Development, Cabinet Affairs, DPAR, Finance",
       organisationName: "Government of Karnataka",
       district: "Ramanagara",
       region: "Southern Karnataka / Bengaluru Region",
@@ -412,7 +412,7 @@ async function main() {
       isMinister: true,
       isMla: true,
       isMlc: false,
-      shortBio: "Deputy Chief Minister of Karnataka holding Major & Medium Irrigation and Bengaluru City Development portfolios; President of KPCC and eight-term MLA for Kanakapura.",
+      shortBio: "Chief Minister of Karnataka and President of KPCC; eight-term legislator for Kanakapura holding Major & Medium Irrigation, Bengaluru City Development, and state executive governance.",
       biography: `Doddalahalli Kempegowda Shivakumar (born 15 May 1962) is an Indian politician and administrator serving as the Deputy Chief Minister of Karnataka. He concurrently holds cabinet portfolios for Major and Medium Irrigation and Bengaluru City Development. An eight-term Member of the Karnataka Legislative Assembly, he represents the Kanakapura assembly constituency.\n\nEarly Life and Education:\nBorn in Kanakapura, Ramanagara district, Shivakumar was educated in Bengaluru, graduating with a Bachelor of Arts degree from APS College of Arts and Science, and subsequently earned a Master of Arts in Political Science from Karnataka State Open University (KSOU), as verified in statutory election filings.\n\nPublic Career:\nShivakumar entered active public life through student leadership, rising through the Karnataka Pradesh Youth Congress. In 1989, at age 27, he was elected to the Karnataka Legislative Assembly from Sathanur. Following delimitation in 2008, he has represented Kanakapura in 2008, 2013, 2018, and 2023.\n\nExecutive Portfolios:\nShivakumar has held key ministerial responsibilities in the Government of Karnataka:\n- Minister of State for Prisons (1991–1992)\n- Minister of State for Agriculture (1992–1994)\n- Minister for Urban Development (1999–2004)\n- Cabinet Minister for Energy (2014–2018), overseeing the 2,050 MW Pavagada Solar Park\n- Cabinet Minister for Major Water Resources and Medical Education (2018–2019)\n- Deputy Chief Minister of Karnataka (sworn in May 2023)\n\nHe has served as President of the Karnataka Pradesh Congress Committee (KPCC) since July 2020.`,
       portraitUrl: "/images/portraits/dk-shivakumar.jpg",
       publicationStatus: PublicationStatus.PUBLISHED,
@@ -423,9 +423,9 @@ async function main() {
       slug: "dk-shivakumar",
       displayName: "D. K. Shivakumar",
       kannadaName: "ಡಿ. ಕೆ. ಶಿವಕುಮಾರ್",
-      currentRole: "Deputy Chief Minister of Karnataka & KPCC President",
+      currentRole: "Chief Minister of Karnataka",
       party: "Indian National Congress",
-      portfolio: "Deputy Chief Minister, Major and Medium Irrigation, Bengaluru City Development",
+      portfolio: "Chief Minister, Major & Medium Irrigation, Bengaluru City Development, Cabinet Affairs, DPAR, Finance",
       organisationName: "Government of Karnataka",
       district: "Ramanagara",
       region: "Southern Karnataka / Bengaluru Region",
@@ -434,7 +434,7 @@ async function main() {
       isMinister: true,
       isMla: true,
       isMlc: false,
-      shortBio: "Deputy Chief Minister of Karnataka holding Major & Medium Irrigation and Bengaluru City Development portfolios; President of KPCC and eight-term MLA for Kanakapura.",
+      shortBio: "Chief Minister of Karnataka and President of KPCC; eight-term legislator for Kanakapura holding Major & Medium Irrigation, Bengaluru City Development, and state executive governance.",
       biography: `Doddalahalli Kempegowda Shivakumar (born 15 May 1962) is an Indian politician and administrator serving as the Deputy Chief Minister of Karnataka. He concurrently holds cabinet portfolios for Major and Medium Irrigation and Bengaluru City Development. An eight-term Member of the Karnataka Legislative Assembly, he represents the Kanakapura assembly constituency.\n\nEarly Life and Education:\nBorn in Kanakapura, Ramanagara district, Shivakumar was educated in Bengaluru, graduating with a Bachelor of Arts degree from APS College of Arts and Science, and subsequently earned a Master of Arts in Political Science from Karnataka State Open University (KSOU), as verified in statutory election filings.\n\nPublic Career:\nShivakumar entered active public life through student leadership, rising through the Karnataka Pradesh Youth Congress. In 1989, at age 27, he was elected to the Karnataka Legislative Assembly from Sathanur. Following delimitation in 2008, he has represented Kanakapura in 2008, 2013, 2018, and 2023.\n\nExecutive Portfolios:\nShivakumar has held key ministerial responsibilities in the Government of Karnataka:\n- Minister of State for Prisons (1991–1992)\n- Minister of State for Agriculture (1992–1994)\n- Minister for Urban Development (1999–2004)\n- Cabinet Minister for Energy (2014–2018), overseeing the 2,050 MW Pavagada Solar Park\n- Cabinet Minister for Major Water Resources and Medical Education (2018–2019)\n- Deputy Chief Minister of Karnataka (sworn in May 2023)\n\nHe has served as President of the Karnataka Pradesh Congress Committee (KPCC) since July 2020.`,
       portraitUrl: "/images/portraits/dk-shivakumar.jpg",
       publicationStatus: PublicationStatus.PUBLISHED,
@@ -556,7 +556,7 @@ async function main() {
     data: { publishedRevisionId: dksRevision.id },
   });
 
-  console.log("✓ Profile 2: D. K. Shivakumar (Deputy Chief Minister & KPCC President - PUBLISHED)");
+  console.log("✓ Profile 2: D. K. Shivakumar (Chief Minister of Karnataka - PUBLISHED)");
 
   // Leader 3: Dr. G. Parameshwara (Home Minister)
   const parameshwaraProfile = await prisma.leaderProfile.upsert({
@@ -564,9 +564,9 @@ async function main() {
     update: {
       displayName: "Dr. G. Parameshwara",
       kannadaName: "ಡಾ. ಜಿ. ಪರಮೇಶ್ವರ",
-      currentRole: "Minister for Home Affairs",
+      currentRole: "Deputy Chief Minister of Karnataka",
       party: "Indian National Congress",
-      portfolio: "Home Affairs",
+      portfolio: "Deputy Chief Minister, Home Affairs, Higher Education",
       organisationName: "Government of Karnataka",
       district: "Tumakuru",
       region: "Central Karnataka / Tumakuru",
@@ -575,7 +575,7 @@ async function main() {
       isMinister: true,
       isMla: true,
       isMlc: false,
-      shortBio: "Cabinet Minister for Home Affairs in Karnataka; longest-serving KPCC President, six-term legislator representing Koratagere, and agricultural scientist with Ph.D. from Adelaide.",
+      shortBio: "Deputy Chief Minister of Karnataka; veteran statesman, longest-serving KPCC President, six-term legislator representing Koratagere (SC), and agricultural scientist with Ph.D. from Adelaide.",
       biography: `Dr. Gangadharaiah Parameshwara (born 6 August 1951) is an Indian politician, agricultural scientist, and educational administrator serving as Cabinet Minister for Home Affairs in Karnataka. He is a six-term legislator representing Koratagere (SC) in Tumakuru district.\n\nAcademic Background:\nDr. Parameshwara holds a B.Sc. and M.Sc. in Agriculture from the University of Agricultural Sciences, Bangalore. He was awarded a Ph.D. in Plant Physiology from the Waite Agricultural Research Institute, University of Adelaide, Australia.\n\nPublic Service and Governance:\nFirst elected to the Karnataka Assembly in 1989 from Madhugiri, he has served in multiple ministerial portfolios including Sericulture (1993), Higher Education (1999–2004), and Home Affairs.\n\nHe served as the President of the Karnataka Pradesh Congress Committee for eight consecutive years (2010–2018), the longest tenure in state party history. In May 2023, he took oath as Cabinet Minister for Home Affairs in the state cabinet.`,
       portraitUrl: "/images/portraits/g-parameshwara.jpg",
       publicationStatus: PublicationStatus.PUBLISHED,
@@ -586,9 +586,9 @@ async function main() {
       slug: "g-parameshwara",
       displayName: "Dr. G. Parameshwara",
       kannadaName: "ಡಾ. ಜಿ. ಪರಮೇಶ್ವರ",
-      currentRole: "Minister for Home Affairs",
+      currentRole: "Deputy Chief Minister of Karnataka",
       party: "Indian National Congress",
-      portfolio: "Home Affairs",
+      portfolio: "Deputy Chief Minister, Home Affairs, Higher Education",
       organisationName: "Government of Karnataka",
       district: "Tumakuru",
       region: "Central Karnataka / Tumakuru",
@@ -597,7 +597,7 @@ async function main() {
       isMinister: true,
       isMla: true,
       isMlc: false,
-      shortBio: "Cabinet Minister for Home Affairs in Karnataka; longest-serving KPCC President, six-term legislator representing Koratagere, and agricultural scientist with Ph.D. from Adelaide.",
+      shortBio: "Deputy Chief Minister of Karnataka; veteran statesman, longest-serving KPCC President, six-term legislator representing Koratagere (SC), and agricultural scientist with Ph.D. from Adelaide.",
       biography: `Dr. Gangadharaiah Parameshwara (born 6 August 1951) is an Indian politician, agricultural scientist, and educational administrator serving as Cabinet Minister for Home Affairs in Karnataka. He is a six-term legislator representing Koratagere (SC) in Tumakuru district.\n\nAcademic Background:\nDr. Parameshwara holds a B.Sc. and M.Sc. in Agriculture from the University of Agricultural Sciences, Bangalore. He was awarded a Ph.D. in Plant Physiology from the Waite Agricultural Research Institute, University of Adelaide, Australia.\n\nPublic Service and Governance:\nFirst elected to the Karnataka Assembly in 1989 from Madhugiri, he has served in multiple ministerial portfolios including Sericulture (1993), Higher Education (1999–2004), and Home Affairs.\n\nHe served as the President of the Karnataka Pradesh Congress Committee for eight consecutive years (2010–2018), the longest tenure in state party history. In May 2023, he took oath as Cabinet Minister for Home Affairs in the state cabinet.`,
       portraitUrl: "/images/portraits/g-parameshwara.jpg",
       publicationStatus: PublicationStatus.PUBLISHED,
@@ -672,7 +672,7 @@ async function main() {
     data: { publishedRevisionId: paramRevision.id },
   });
 
-  console.log("✓ Profile 3: Dr. G. Parameshwara (Minister for Home Affairs - PUBLISHED)");
+  console.log("✓ Profile 3: Dr. G. Parameshwara (Deputy Chief Minister - PUBLISHED)");
 
   // Leader 4: Priyank Kharge (Minister for RDPR, IT & BT)
   const khargeProfile = await prisma.leaderProfile.upsert({
@@ -680,14 +680,14 @@ async function main() {
     update: {
       displayName: "Priyank Kharge",
       kannadaName: "ಪ್ರಿಯಾಂಕ್ ಎಂ. ಖರ್ಗೆ",
-      currentRole: "Minister for RDPR, IT & BT",
+      currentRole: "Cabinet Minister for RDPR, IT & BT",
       party: "Indian National Congress",
       portfolio: "Rural Development & Panchayat Raj, Information Technology and Biotechnology",
       organisationName: "Government of Karnataka",
       district: "Kalaburagi",
       region: "Kalyana Karnataka / Kalaburagi",
-      constituency: "Chittapur (SC) (Assembly Constituency No. 44)",
-      assemblyNumber: 44,
+      constituency: "Chittapur (SC) (Assembly Constituency No. 40)",
+      assemblyNumber: 40,
       isMinister: true,
       isMla: true,
       isMlc: false,
@@ -702,14 +702,14 @@ async function main() {
       slug: "priyank-kharge",
       displayName: "Priyank Kharge",
       kannadaName: "ಪ್ರಿಯಾಂಕ್ ಎಂ. ಖರ್ಗೆ",
-      currentRole: "Minister for RDPR, IT & BT",
+      currentRole: "Cabinet Minister for RDPR, IT & BT",
       party: "Indian National Congress",
       portfolio: "Rural Development & Panchayat Raj, Information Technology and Biotechnology",
       organisationName: "Government of Karnataka",
       district: "Kalaburagi",
       region: "Kalyana Karnataka / Kalaburagi",
-      constituency: "Chittapur (SC) (Assembly Constituency No. 44)",
-      assemblyNumber: 44,
+      constituency: "Chittapur (SC) (Assembly Constituency No. 40)",
+      assemblyNumber: 40,
       isMinister: true,
       isMla: true,
       isMlc: false,
@@ -795,7 +795,7 @@ async function main() {
     update: {
       displayName: "M. B. Patil",
       kannadaName: "ಎಂ. ಬಿ. ಪಾಟೀಲ್",
-      currentRole: "Minister for Large & Medium Industries and Infrastructure Development",
+      currentRole: "Cabinet Minister for Large & Medium Industries",
       party: "Indian National Congress",
       portfolio: "Large and Medium Industries, Infrastructure Development",
       organisationName: "Government of Karnataka",
@@ -817,7 +817,7 @@ async function main() {
       slug: "mb-patil",
       displayName: "M. B. Patil",
       kannadaName: "ಎಂ. ಬಿ. ಪಾಟೀಲ್",
-      currentRole: "Minister for Large & Medium Industries and Infrastructure Development",
+      currentRole: "Cabinet Minister for Large & Medium Industries",
       party: "Indian National Congress",
       portfolio: "Large and Medium Industries, Infrastructure Development",
       organisationName: "Government of Karnataka",
@@ -874,7 +874,7 @@ async function main() {
     update: {
       displayName: "Satish Jarkiholi",
       kannadaName: "ಸತೀಶ್ ಜಾರಕಿಹೊಳಿ",
-      currentRole: "Minister for Public Works Department",
+      currentRole: "Cabinet Minister for Public Works",
       party: "Indian National Congress",
       portfolio: "Public Works Department (PWD)",
       organisationName: "Government of Karnataka",
@@ -896,7 +896,7 @@ async function main() {
       slug: "satish-jarkiholi",
       displayName: "Satish Jarkiholi",
       kannadaName: "ಸತೀಶ್ ಜಾರಕಿಹೊಳಿ",
-      currentRole: "Minister for Public Works Department",
+      currentRole: "Cabinet Minister for Public Works",
       party: "Indian National Congress",
       portfolio: "Public Works Department (PWD)",
       organisationName: "Government of Karnataka",
@@ -953,7 +953,7 @@ async function main() {
     update: {
       displayName: "Krishna Byre Gowda",
       kannadaName: "ಕೃಷ್ಣ ಬೈರೇಗೌಡ",
-      currentRole: "Minister for Revenue",
+      currentRole: "Cabinet Minister for Revenue",
       party: "Indian National Congress",
       portfolio: "Revenue (excluding Muzrai)",
       organisationName: "Government of Karnataka",
@@ -975,7 +975,7 @@ async function main() {
       slug: "krishna-byre-gowda",
       displayName: "Krishna Byre Gowda",
       kannadaName: "ಕೃಷ್ಣ ಬೈರೇಗೌಡ",
-      currentRole: "Minister for Revenue",
+      currentRole: "Cabinet Minister for Revenue",
       party: "Indian National Congress",
       portfolio: "Revenue (excluding Muzrai)",
       organisationName: "Government of Karnataka",
@@ -1461,7 +1461,7 @@ async function main() {
     },
     {
       slug: "chittapur",
-      assemblyNumber: 44,
+      assemblyNumber: 40,
       name: "Chittapur",
       kannadaName: "ಚಿತ್ತಾಪುರ",
       district: "Kalaburagi",
@@ -1866,7 +1866,8 @@ async function main() {
   // ==========================================
   // Fetch constituency IDs for relational foreign keys
   const kanakapuraC = await prisma.constituency.findUnique({ where: { slug: "kanakapura" } });
-  const varunaC = await prisma.constituency.findUnique({ where: { slug: "varuna" } });
+  const koratagereC = await prisma.constituency.findUnique({ where: { slug: "koratagere" } });
+  const babaleshwarC = await prisma.constituency.findUnique({ where: { slug: "babaleshwar" } });
   const byatarayanapuraC = await prisma.constituency.findUnique({ where: { slug: "byatarayanapura" } });
   const chittapurC = await prisma.constituency.findUnique({ where: { slug: "chittapur" } });
   const yemkanmardiC = await prisma.constituency.findUnique({ where: { slug: "yemkanmardi" } });
@@ -1910,18 +1911,35 @@ async function main() {
       publicationStatus: PublicationStatus.PUBLISHED,
     },
     {
-      title: "Varuna Branch Canal Modernisation & Tail-End Lift Package",
-      description: "Lining, telemetry flow-metering, and lift irrigation enhancements along 42 km of the Varuna canal network to guarantee consistent tail-end irrigation supply to 35,000 acres across Mysuru and Nanjangud taluks.",
-      constituencyId: varunaC?.id,
-      location: "Varuna & Nanjangud, Mysuru District",
-      department: "Cauvery Neeravari Nigama Limited (CNNL)",
+      title: "Statewide Emergency Response Support System (ERS-112) & Safe City Network",
+      description: "Integrated statewide emergency dispatch network integrating 112 command control, automated traffic intelligence, and AI surveillance camera feeds across metropolitan and district headquarters.",
+      constituencyId: koratagereC?.id,
+      location: "Koratagere & State Police Headquarters, Tumakuru & Bengaluru",
+      department: "Home Department & Karnataka State Police (KSP)",
+      stage: ProjectStage.COMPLETED,
+      initiativeType: ProjectType.GOVERNMENT_PROJECT,
+      leaderProfileId: parameshwaraProfile.id,
+      announcedDate: new Date("2023-07-01"),
+      latestUpdateDate: new Date("2026-10-18"),
+      budgetAmount: "₹667 Crore",
+      evidenceUrl: "https://ksp.karnataka.gov.in/ers-112-safecity",
+      lastVerifiedAt: new Date("2026-10-28"),
+      verificationStatus: VerificationStatus.VERIFIED,
+      publicationStatus: PublicationStatus.PUBLISHED,
+    },
+    {
+      title: "Vijayapura Industrial Growth Centre & Agro-Tech Hub",
+      description: "Establishment of a 1,200-acre comprehensive industrial park and food processing cluster with dedicated logistics link to NH 50, attracting large manufacturing and agro-allied investments to North Karnataka.",
+      constituencyId: babaleshwarC?.id,
+      location: "Babaleshwar & Vijayapura Industrial Zone, Vijayapura District",
+      department: "Commerce & Industries Department / Karnataka Industrial Areas Development Board (KIADB)",
       stage: ProjectStage.ONGOING,
-      initiativeType: ProjectType.MLA_LOCAL_INITIATIVE,
-      leaderProfileId: siddaProfile.id,
-      announcedDate: new Date("2023-11-10"),
-      latestUpdateDate: new Date("2026-10-24"),
-      budgetAmount: "₹345 Crore",
-      evidenceUrl: "https://waterresources.karnataka.gov.in/varuna-branch-tender",
+      initiativeType: ProjectType.GOVERNMENT_PROJECT,
+      leaderProfileId: mbPatilProfile.id,
+      announcedDate: new Date("2023-11-20"),
+      latestUpdateDate: new Date("2026-10-26"),
+      budgetAmount: "₹650 Crore",
+      evidenceUrl: "https://industries.karnataka.gov.in/kiadb-vijayapura",
       lastVerifiedAt: new Date("2026-10-28"),
       verificationStatus: VerificationStatus.VERIFIED,
       publicationStatus: PublicationStatus.PUBLISHED,

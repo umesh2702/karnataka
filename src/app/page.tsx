@@ -8,38 +8,31 @@ import { PublicationStatus } from "@prisma/client";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "UCreates — Karnataka Congress Leadership & Constituency Platform",
+  title: "UCreates — Karnataka Leadership Showcase",
   description:
-    "Institutional governance, assembly constituency documentation and public-engagement platform for the Indian National Congress in Karnataka, powered by UCreates.",
+    "Institutional governance and leadership showcase for Karnataka Congress executive administration, powered by UCreates.",
 };
 
 export default async function HomePage() {
-  const [publishedProfiles, constituencies, schemes, projects] = await Promise.all([
+  const showcaseSlugs = [
+    "dk-shivakumar",
+    "g-parameshwara",
+    "priyank-kharge",
+    "mb-patil",
+    "satish-jarkiholi",
+    "krishna-byre-gowda",
+  ];
+
+  const [publishedProfiles, schemes, projects] = await Promise.all([
     prisma.leaderProfile.findMany({
-      where: { publicationStatus: PublicationStatus.PUBLISHED },
+      where: {
+        publicationStatus: PublicationStatus.PUBLISHED,
+        slug: { in: showcaseSlugs },
+      },
       include: {
         _count: { select: { milestones: true, initiatives: true, projects: true } },
       },
       orderBy: { displayName: "asc" },
-    }),
-    prisma.constituency.findMany({
-      where: { status: "ACTIVE" },
-      include: {
-        representative: {
-          select: {
-            id: true,
-            slug: true,
-            displayName: true,
-            kannadaName: true,
-            currentRole: true,
-            party: true,
-            portraitUrl: true,
-            publicationStatus: true,
-          },
-        },
-        _count: { select: { projects: true } },
-      },
-      orderBy: { number: "asc" },
     }),
     prisma.governmentScheme.findMany({
       where: { publicationStatus: PublicationStatus.PUBLISHED },
@@ -61,8 +54,13 @@ export default async function HomePage() {
   ]);
 
   // CM & DCM records
-  const cmProfile = publishedProfiles.find((p) => p.slug === "siddaramaiah") || null;
-  const dcmProfile = publishedProfiles.find((p) => p.slug === "dk-shivakumar") || null;
+  const cmProfile = publishedProfiles.find((p) => p.slug === "dk-shivakumar") || null;
+  const dcmProfile = publishedProfiles.find((p) => p.slug === "g-parameshwara") || null;
+
+  // Selected 4 Cabinet Ministers
+  const cabinetMinisters = publishedProfiles.filter((p) =>
+    ["priyank-kharge", "mb-patil", "satish-jarkiholi", "krishna-byre-gowda"].includes(p.slug)
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F8F6F2]">
@@ -73,7 +71,7 @@ export default async function HomePage() {
           publishedProfiles={publishedProfiles}
           cmProfile={cmProfile}
           dcmProfile={dcmProfile}
-          constituencies={constituencies}
+          cabinetMinisters={cabinetMinisters}
           schemes={schemes}
           projects={projects}
         />
