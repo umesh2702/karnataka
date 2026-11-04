@@ -18,9 +18,40 @@ const createLeaderSchema = z.object({
   portraitUrl: z.string().url().optional().or(z.literal("")),
 });
 
+const showcaseSlugs = [
+  "dk-shivakumar",
+  "g-parameshwara",
+  "priyank-kharge",
+  "mb-patil",
+  "satish-jarkiholi",
+  "krishna-byre-gowda",
+];
+
 export async function GET(req: NextRequest) {
   const authRes = await requireAuth(req);
-  if (authRes instanceof NextResponse) return authRes;
+  if (authRes instanceof NextResponse) {
+    // Unauthenticated public request (e.g. for citizen correction form dropdown)
+    // Return published showcase profiles only with minimal public fields
+    try {
+      const publicProfiles = await prisma.leaderProfile.findMany({
+        where: {
+          publicationStatus: PublicationStatus.PUBLISHED,
+          slug: { in: showcaseSlugs },
+        },
+        select: {
+          id: true,
+          slug: true,
+          displayName: true,
+          kannadaName: true,
+          currentRole: true,
+        },
+        orderBy: { displayName: "asc" },
+      });
+      return NextResponse.json({ profiles: publicProfiles });
+    } catch {
+      return NextResponse.json({ profiles: [] });
+    }
+  }
   const { session } = authRes;
 
   const { searchParams } = new URL(req.url);

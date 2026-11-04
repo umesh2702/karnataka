@@ -30,7 +30,7 @@ export default function UsersManagementPage() {
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const fetchUsers = async () => {
+  const loadUsersData = async () => {
     try {
       const res = await fetch("/api/users");
       if (res.ok) {
@@ -44,7 +44,23 @@ export default function UsersManagementPage() {
   };
 
   useEffect(() => {
-    fetchUsers();
+    let ignore = false;
+    async function load() {
+      try {
+        const res = await fetch("/api/users");
+        if (res.ok && !ignore) {
+          const data = await res.json();
+          setUsers(data.users || []);
+        }
+      } catch {}
+      finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleCreateUser = async (e: React.FormEvent) => {
@@ -64,7 +80,7 @@ export default function UsersManagementPage() {
 
       setShowModal(false);
       setFormData({ name: "", email: "", password: "", role: "EDITOR" });
-      await fetchUsers();
+      await loadUsersData();
     } catch (err: unknown) {
       setErrorMsg(err instanceof Error ? err.message : "Error creating user");
     } finally {

@@ -23,6 +23,7 @@ export default function CorrectionsPage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    document.title = "Submit a Factual Correction | Karnataka Congress Official Digital Platform";
     // Fetch published leaders list for dropdown
     fetch("/api/leaders")
       .then((res) => (res.ok ? res.json() : { profiles: [] }))
@@ -75,7 +76,7 @@ export default function CorrectionsPage() {
 
       <main className="flex-1 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 w-full">
         <div className="border-b border-[#E6E1DA] pb-6 mb-8 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#922036]/10 text-[#922036] text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#173B65]/10 text-[#173B65] text-xs font-semibold uppercase tracking-wider">
             Public Integrity Desk
           </div>
           <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#17191B]">
@@ -114,7 +115,7 @@ export default function CorrectionsPage() {
                     submitterEmail: "",
                   });
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#173B65] text-white text-xs font-semibold hover:bg-[#0F2744] transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Submit Another Request</span>
@@ -141,7 +142,7 @@ export default function CorrectionsPage() {
                 <select
                   value={formData.profileSlug}
                   onChange={(e) => setFormData({ ...formData, profileSlug: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                 >
                   <option value="">General Platform Record / Other</option>
                   {profiles.map((p) => (
@@ -154,7 +155,7 @@ export default function CorrectionsPage() {
 
               <div>
                 <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
-                  Section, Milestone, or Claim Requiring Review <span className="text-[#922036]">*</span>
+                  Section, Milestone, or Claim Requiring Review <span className="text-[#F47A20]">*</span>
                 </label>
                 <input
                   type="text"
@@ -162,13 +163,13 @@ export default function CorrectionsPage() {
                   placeholder="e.g. 2014 Energy Minister tenure dates or Assembly election year"
                   value={formData.claimOrSection}
                   onChange={(e) => setFormData({ ...formData, claimOrSection: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
-                  Detailed Description of Discrepancy <span className="text-[#922036]">*</span>
+                  Detailed Description of Discrepancy <span className="text-[#F47A20]">*</span>
                 </label>
                 <textarea
                   required
@@ -176,13 +177,13 @@ export default function CorrectionsPage() {
                   placeholder="Describe the inaccurate detail currently published..."
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
-                  Verified Replacement Information <span className="text-[#922036]">*</span>
+                  Verified Replacement Information <span className="text-[#F47A20]">*</span>
                 </label>
                 <textarea
                   required
@@ -190,7 +191,7 @@ export default function CorrectionsPage() {
                   placeholder="Provide the accurate text, date, or portfolio designation..."
                   value={formData.suggestedCorrection}
                   onChange={(e) => setFormData({ ...formData, suggestedCorrection: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                 />
               </div>
 
@@ -203,14 +204,14 @@ export default function CorrectionsPage() {
                   placeholder="https://kla.kar.nic.in/... or https://affidavit.eci.gov.in/..."
                   value={formData.evidenceUrl}
                   onChange={(e) => setFormData({ ...formData, evidenceUrl: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                  className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div>
                   <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
-                    Your Full Name <span className="text-[#922036]">*</span>
+                    Your Full Name <span className="text-[#F47A20]">*</span>
                   </label>
                   <input
                     type="text"
@@ -218,13 +219,13 @@ export default function CorrectionsPage() {
                     placeholder="Researcher / Citizen Name"
                     value={formData.submitterName}
                     onChange={(e) => setFormData({ ...formData, submitterName: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                    className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-[#17191B] uppercase tracking-wider mb-1.5">
-                    Your Contact Email <span className="text-[#922036]">*</span>
+                    Your Contact Email <span className="text-[#F47A20]">*</span>
                   </label>
                   <input
                     type="email"
@@ -232,7 +233,7 @@ export default function CorrectionsPage() {
                     placeholder="name@example.com"
                     value={formData.submitterEmail}
                     onChange={(e) => setFormData({ ...formData, submitterEmail: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#922036]"
+                    className="w-full px-3.5 py-2.5 text-sm bg-[#F8F6F2] border border-[#E6E1DA] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#173B65]"
                   />
                 </div>
               </div>
@@ -243,7 +244,7 @@ export default function CorrectionsPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#922036] text-white text-xs font-semibold hover:bg-[#78182a] transition-colors disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#173B65] text-white text-xs font-semibold hover:bg-[#0F2744] transition-colors disabled:opacity-50"
               >
                 {submitting ? (
                   <span>Submitting...</span>

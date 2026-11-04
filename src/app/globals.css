@@ -3,22 +3,28 @@
 
 @layer base {
   :root {
-    --background: #F8F6F2;
-    --foreground: #17191B;
+    --background: #F8F7F3;
+    --foreground: #242424;
     --card: #FFFFFF;
-    --card-foreground: #17191B;
-    --primary: #922036;
-    --primary-hover: #7A1629;
+    --card-foreground: #242424;
+    --primary: #173B65;
+    --primary-hover: #0F2744;
     --primary-foreground: #FFFFFF;
+    --congress-saffron: #F47A20;
+    --congress-white: #FFFFFF;
+    --congress-green: #16864A;
+    --congress-navy: #173B65;
+    --congress-graphite: #242424;
+    --congress-ivory: #F8F7F3;
     --muted-rose: #D9A0A9;
-    --secondary-text: #68645F;
-    --border: #E6E1DA;
+    --secondary-text: #595959;
+    --border: #E5E1D8;
     --border-subtle: #EFECE6;
-    --input: #E6E1DA;
-    --ring: #922036;
-    --verified-green: #1A633F;
-    --verified-bg: #E9F5EE;
-    --verified-border: #C2E2CE;
+    --input: #E5E1D8;
+    --ring: #173B65;
+    --verified-green: #16864A;
+    --verified-bg: #E8F5EE;
+    --verified-border: #B7DFCA;
     --radius: 0.5rem;
   }
 
@@ -38,6 +44,33 @@
   .font-kannada {
     font-family: "Noto Sans Kannada", "Noto Serif Kannada", "Tunga", "Kedage", "Mallige", sans-serif;
   }
+}
+
+/* Congress subtle tricolor hairline and accents */
+.tricolor-hairline {
+  background: linear-gradient(90deg, #F47A20 0%, #FFFFFF 50%, #16864A 100%);
+}
+
+.tricolor-hairline-subtle {
+  background: linear-gradient(90deg, #F47A20 0%, #FFFFFF 40%, #173B65 50%, #FFFFFF 60%, #16864A 100%);
+}
+
+.congress-badge-saffron {
+  background-color: rgba(244, 122, 32, 0.08);
+  color: #C85906;
+  border-color: rgba(244, 122, 32, 0.25);
+}
+
+.congress-badge-green {
+  background-color: rgba(22, 134, 74, 0.08);
+  color: #16864A;
+  border-color: rgba(22, 134, 74, 0.25);
+}
+
+.congress-badge-navy {
+  background-color: rgba(23, 59, 101, 0.08);
+  color: #173B65;
+  border-color: rgba(23, 59, 101, 0.25);
 }
 
 /* Custom editorial scrollbar */

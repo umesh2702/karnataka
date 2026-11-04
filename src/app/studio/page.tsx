@@ -93,14 +93,15 @@ export default async function StudioDashboardPage() {
       {/* Welcome Banner */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E6E1DA] editorial-shadow flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-semibold text-[#922036] uppercase tracking-wider">
-            Leadership Publishing Desk
+          <span className="text-xs font-semibold text-[#173B65] uppercase tracking-wider flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#F47A20]" />
+            Karnataka Pradesh Congress Committee · Executive Administration
           </span>
           <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#17191B] mt-1">
-            Editorial Studio Overview
+            Governance & Publishing Desk
           </h1>
           <p className="text-xs sm:text-sm text-[#68645F] mt-1">
-            Real-time database statistics and verification workflows for UCreates Karnataka Edition.
+            Real-time database statistics, revision review queues, and verification workflows for Karnataka Congress Digital Platform.
           </p>
         </div>
 
@@ -308,6 +309,17 @@ export default async function StudioDashboardPage() {
               <div className="flex items-center gap-2.5">
                 <BookMarked className="w-4 h-4 text-[#922036]" />
                 <span>Source Registry</span>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-[#888]" />
+            </Link>
+
+            <Link
+              href="/studio/projects?status=NEEDS_REVIEW"
+              className="flex items-center justify-between p-3 rounded-xl border border-[#E6E1DA] hover:bg-[#F8F6F2] hover:border-[#922036] transition-colors text-xs font-semibold text-[#17191B]"
+            >
+              <div className="flex items-center gap-2.5">
+                <FileCheck2 className="w-4 h-4 text-[#922036]" />
+                <span>Claims Requiring Audit</span>
               </div>
               <ArrowRight className="w-3.5 h-3.5 text-[#888]" />
             </Link>

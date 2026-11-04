@@ -56,7 +56,7 @@ export default function ReviewQueuePage() {
   const [submitting, setSubmitting] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
-  const fetchRevisions = async () => {
+  const refreshRevisions = async () => {
     try {
       const res = await fetch("/api/leaders");
       if (res.ok) {
@@ -100,7 +100,57 @@ export default function ReviewQueuePage() {
   };
 
   useEffect(() => {
-    fetchRevisions();
+    let ignore = false;
+    async function load() {
+      try {
+        const res = await fetch("/api/leaders");
+        if (res.ok && !ignore) {
+          const data = await res.json();
+          const allRevs: RevisionItem[] = [];
+
+          for (const p of data.profiles || []) {
+            const detailRes = await fetch(`/api/leaders/${p.id}`);
+            if (detailRes.ok) {
+              const detail = await detailRes.json();
+              const prof = detail.profile;
+              (prof.revisions || []).forEach((rev: RevisionItem) => {
+                allRevs.push({
+                  ...rev,
+                  profile: {
+                    id: prof.id,
+                    displayName: prof.displayName,
+                    slug: prof.slug,
+                    currentRole: prof.currentRole,
+                    publicationStatus: prof.publicationStatus,
+                    consentRecords: prof.consentRecords || [],
+                  },
+                });
+              });
+            }
+          }
+
+          allRevs.sort((a, b) => {
+            if (a.reviewStatus === "IN_REVIEW" && b.reviewStatus !== "IN_REVIEW") return -1;
+            if (b.reviewStatus === "IN_REVIEW" && a.reviewStatus !== "IN_REVIEW") return 1;
+            return b.version - a.version;
+          });
+
+          if (!ignore) {
+            setRevisions(allRevs);
+          }
+        }
+      } catch (err: unknown) {
+        console.error(err);
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+    load();
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleReviewSubmit = async (e: React.FormEvent) => {
@@ -127,7 +177,7 @@ export default function ReviewQueuePage() {
       });
       setSelectedRev(null);
       setReason("");
-      await fetchRevisions();
+      await refreshRevisions();
     } catch (err: unknown) {
       setAlert({
         type: "error",

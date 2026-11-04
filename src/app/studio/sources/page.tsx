@@ -35,7 +35,7 @@ export default function SourceRegistryPage() {
   });
   const [submitting, setSubmitting] = useState(false);
 
-  const fetchSources = async () => {
+  const refreshSources = async () => {
     try {
       const url = `/api/sources?status=${statusFilter}`;
       const res = await fetch(url);
@@ -50,7 +50,26 @@ export default function SourceRegistryPage() {
   };
 
   useEffect(() => {
-    fetchSources();
+    let ignore = false;
+    async function load() {
+      try {
+        const url = `/api/sources?status=${statusFilter}`;
+        const res = await fetch(url);
+        if (res.ok && !ignore) {
+          const data = await res.json();
+          setSources(data.sources || []);
+        }
+      } catch {}
+      finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+    load();
+    return () => {
+      ignore = true;
+    };
   }, [statusFilter]);
 
   const handleCreateSource = async (e: React.FormEvent) => {
@@ -72,7 +91,7 @@ export default function SourceRegistryPage() {
           verificationStatus: "VERIFIED",
           notes: "",
         });
-        await fetchSources();
+        await refreshSources();
       }
     } catch {}
     finally {

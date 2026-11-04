@@ -60,7 +60,7 @@ describe("Security & Self-Approval Prevention", () => {
 });
 
 describe("Karnataka Congress Platform — Verified Leadership Showcase (6 Leaders)", () => {
-  it("verifies D. K. Shivakumar is Chief Minister of Karnataka representing Kanakapura (AC #184)", async () => {
+  it("verifies D. K. Shivakumar is Chief Minister of Karnataka with canonical Cabinet Affairs, Finance & Planning portfolios", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "dk-shivakumar" },
       include: { milestones: true, initiatives: true },
@@ -73,13 +73,15 @@ describe("Karnataka Congress Platform — Verified Leadership Showcase (6 Leader
     expect(profile?.party).toBe("Indian National Congress");
     expect(profile?.assemblyNumber).toBe(184);
     expect(profile?.district).toBe("Ramanagara");
-    expect(profile?.portfolio).toContain("Irrigation");
-    expect(profile?.portfolio).toContain("Bengaluru");
+    expect(profile?.portfolio).toContain("Cabinet Affairs");
+    expect(profile?.portfolio).toContain("Finance");
+    expect(profile?.portfolio).toContain("Planning");
+    expect(profile?.portfolio).not.toContain("Irrigation");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
     expect(profile?.portraitUrl).toBe("/images/portraits/dk-shivakumar.jpg");
   });
 
-  it("verifies Dr. G. Parameshwara is Deputy Chief Minister of Karnataka representing Koratagere (SC #132)", async () => {
+  it("verifies Dr. G. Parameshwara is Deputy Chief Minister with Revenue and Sports portfolios", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "g-parameshwara" },
     });
@@ -87,20 +89,25 @@ describe("Karnataka Congress Platform — Verified Leadership Showcase (6 Leader
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("Dr. G. Parameshwara");
     expect(profile?.currentRole).toBe("Deputy Chief Minister of Karnataka");
+    expect(profile?.portfolio).toContain("Revenue");
+    expect(profile?.portfolio).toContain("Sports");
+    expect(profile?.portfolio).not.toContain("Home");
     expect(profile?.assemblyNumber).toBe(132);
     expect(profile?.district).toBe("Tumakuru");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
     expect(profile?.portraitUrl).toBe("/images/portraits/g-parameshwara.jpg");
   });
 
-  it("verifies Priyank Kharge is Cabinet Minister for RDPR, IT & BT representing Chittapur (SC #40)", async () => {
+  it("verifies Priyank Kharge is Cabinet Minister for Home (excl. Intelligence), IT & BT, and E-Governance", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "priyank-kharge" },
     });
 
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("Priyank Kharge");
-    expect(profile?.currentRole).toBe("Cabinet Minister for RDPR, IT & BT");
+    expect(profile?.currentRole).toBe("Cabinet Minister for Home (excl. Intelligence), IT & BT, and E-Governance");
+    expect(profile?.portfolio).toContain("Home (excluding Intelligence)");
+    expect(profile?.portfolio).toContain("IT & BT");
     expect(profile?.assemblyNumber).toBe(40);
     expect(profile?.district).toBe("Kalaburagi");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
@@ -115,9 +122,10 @@ describe("Karnataka Congress Platform — Verified Leadership Showcase (6 Leader
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("M. B. Patil");
     expect(profile?.currentRole).toBe("Cabinet Minister for Large & Medium Industries");
+    expect(profile?.portfolio).toContain("Large and Medium Industries");
     expect(profile?.assemblyNumber).toBe(29);
     expect(profile?.district).toBe("Vijayapura");
-    expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
+    expect(profile?.portraitUrl).toBe("/images/portraits/mb-patil.jpg");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 
@@ -129,23 +137,26 @@ describe("Karnataka Congress Platform — Verified Leadership Showcase (6 Leader
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("Satish Jarkiholi");
     expect(profile?.currentRole).toBe("Cabinet Minister for Public Works");
+    expect(profile?.portfolio).toContain("Public Works");
     expect(profile?.assemblyNumber).toBe(11);
     expect(profile?.district).toBe("Belagavi");
-    expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
+    expect(profile?.portraitUrl).toBe("/images/portraits/satish-jarkiholi.jpg");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 
-  it("verifies Krishna Byre Gowda is Cabinet Minister for Revenue representing Byatarayanapura (AC #152)", async () => {
+  it("verifies Krishna Byre Gowda is Cabinet Minister for Greater Bengaluru Development & Parliamentary Affairs", async () => {
     const profile = await prisma.leaderProfile.findFirst({
       where: { slug: "krishna-byre-gowda" },
     });
 
     expect(profile).not.toBeNull();
     expect(profile?.displayName).toBe("Krishna Byre Gowda");
-    expect(profile?.currentRole).toBe("Cabinet Minister for Revenue");
+    expect(profile?.currentRole).toBe("Cabinet Minister for Greater Bengaluru Development & Parliamentary Affairs");
+    expect(profile?.portfolio).toContain("Greater Bengaluru Development");
+    expect(profile?.portfolio).not.toContain("Revenue");
     expect(profile?.assemblyNumber).toBe(152);
     expect(profile?.district).toBe("Bengaluru Urban");
-    expect(profile?.portraitUrl).toBeNull(); // Neutral monogram avatar fallback
+    expect(profile?.portraitUrl).toBe("/images/portraits/krishna-byre-gowda.jpg");
     expect(profile?.publicationStatus).toBe(PublicationStatus.PUBLISHED);
   });
 

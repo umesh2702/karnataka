@@ -3,14 +3,14 @@ import prisma from "@/lib/prisma";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HomeHeroAndMap from "@/components/home/HomeHeroAndMap";
-import { PublicationStatus } from "@prisma/client";
+import { PublicationStatus, VerificationStatus } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "UCreates — Karnataka Leadership Showcase",
+  title: "Karnataka Congress — Official Digital Platform | ಕರ್ನಾಟಕ ಪ್ರದೇಶ ಕಾಂಗ್ರೆಸ್ ಸಮಿತಿ",
   description:
-    "Institutional governance and leadership showcase for Karnataka Congress executive administration, powered by UCreates.",
+    "Official digital leadership, governance and citizen engagement platform of the Karnataka Pradesh Congress Committee (KPCC). Documenting executive leadership portfolios, flagship welfare guarantees, and verifiable public service records.",
 };
 
 export default async function HomePage() {
@@ -39,7 +39,10 @@ export default async function HomePage() {
       orderBy: { sortOrder: "asc" },
     }),
     prisma.workProject.findMany({
-      where: { publicationStatus: PublicationStatus.PUBLISHED },
+      where: {
+        publicationStatus: PublicationStatus.PUBLISHED,
+        verificationStatus: VerificationStatus.VERIFIED,
+      },
       include: {
         constituency: {
           select: { name: true, number: true, district: true, slug: true },
@@ -49,7 +52,7 @@ export default async function HomePage() {
         },
       },
       orderBy: { announcedDate: "desc" },
-      take: 6,
+      take: 8,
     }),
   ]);
 

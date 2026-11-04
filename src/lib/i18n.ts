@@ -89,12 +89,12 @@ export const translations: Record<Language, Translations> = {
       searchPlaceholder: "Search leader by name or role...",
     },
     hero: {
-      edition: "Karnataka Congress Platform",
-      tagline: "Leadership, Constituencies & Governance Initiatives.",
+      edition: "Karnataka Congress Official Digital Platform",
+      tagline: "Executive Leadership, Portfolios & Citizen Welfare.",
       description:
-        "A premium, source-aware documentation platform presenting verified leadership records, assembly constituency development profiles, and five guarantee citizen welfare architectures across Karnataka, powered by UCreates.",
+        "The digital leadership and governance platform of the Karnataka Pradesh Congress Committee (KPCC), presenting verified executive portfolios, flagship Five Guarantees, and evidence-linked developmental milestones.",
       exploreBtn: "Explore Leaders Directory",
-      constituencyBtn: "Explore Constituencies",
+      constituencyBtn: "Explore Leadership",
       schemesBtn: "The 5 Guarantees",
       aboutBtn: "Our Editorial Standards",
       featuredLabel: "State Executive Leadership",
@@ -133,7 +133,7 @@ export const translations: Record<Language, Translations> = {
       emptyTimeline: "No verified public milestones have been published for this profile yet.",
       emptyInitiatives: "No public initiatives currently listed under verified status.",
       independentDisclaimer:
-        "This profile is compiled by UCreates using public legislative gazettes and verifiable reports. It is not an official government endorsement.",
+        "Verified against official Karnataka Legislative Council directories, state gazettes, and statutory election affidavits. Technology Partner: UCreates.",
     },
     status: {
       published: "Published",
@@ -143,15 +143,15 @@ export const translations: Record<Language, Translations> = {
       archived: "Archived",
     },
     footer: {
-      tagline: "Karnataka Congress Leadership & Constituency Platform.",
+      tagline: "Karnataka Congress Official Digital Leadership & Governance Platform.",
       disclaimer:
-        "UCreates Karnataka Platform is an independent technology demonstration developed by UCreates. Official public data is sourced from Karnataka Legislative gazettes and department notices.",
+        "Official digital platform of the Karnataka Pradesh Congress Committee (KPCC). Engineered by technology development partner UCreates. All portfolios and scheme records are cross-referenced with legislative gazettes.",
       rights: "All rights reserved.",
       about: "About & Standards",
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       corrections: "Corrections & Updates",
-      karnatakaEdition: "Karnataka Platform — Powered by UCreates",
+      karnatakaEdition: "Karnataka Congress Platform · Developed by UCreates",
     },
   },
   kn: {
@@ -167,10 +167,10 @@ export const translations: Record<Language, Translations> = {
       searchPlaceholder: "ನಾಯಕರ ಹೆಸರು ಅಥವಾ ಹುದ್ದೆ ಹುಡುಕಿ...",
     },
     hero: {
-      edition: "ಕರ್ನಾಟಕ ಕಾಂಗ್ರೆಸ್ ವೇದಿಕೆ",
-      tagline: "ನಾಯಕತ್ವ, ಕ್ಷೇತ್ರಗಳು ಮತ್ತು ಅಭಿವೃದ್ಧಿ ಯೋಜನೆಗಳು.",
+      edition: "ಕರ್ನಾಟಕ ಕಾಂಗ್ರೆಸ್ ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ವೇದಿಕೆ",
+      tagline: "ಕಾರ್ಯಕಾರಿ ನಾಯಕತ್ವ, ಸಂಪುಟ ಖಾತೆಗಳು ಮತ್ತು ೫ ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು.",
       description:
-        "ಕರ್ನಾಟಕದ ಸಾರ್ವಜನಿಕ ಪ್ರತಿನಿಧಿಗಳು, ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರಗಳ ಸಮಗ್ರ ಮಾಹಿತಿ ಮತ್ತು ೫ ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ದಾಖಲಿಸುವ ಪ್ರೀಮಿಯಂ ಡಿಜಿಟಲ್ ವೇದಿಕೆ — ಯುಕ್ರಿಯೇಟ್ಸ್ (UCreates) ನಿರ್ಮಿತ.",
+        "ಕರ್ನಾಟಕ ಪ್ರದೇಶ ಕಾಂಗ್ರೆಸ್ ಸಮಿತಿ (KPCC) ನಾಯಕತ್ವ, ಸಚಿವ ಸಂಪುಟ ಖಾತೆಗಳು ಮತ್ತು ಜನಪರ ೫ ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳನ್ನು ಅಧಿಕೃತ ಗೆಜೆಟ್‌ಗಳಿಂದ ಪರಿಶೀಲಿಸಿ ದಾಖಲಿಸುವ ಡಿಜಿಟಲ್ ವೇದಿಕೆ.",
       exploreBtn: "ನಾಯಕರ ವಿವರಗಳನ್ನು ನೋಡಿ",
       constituencyBtn: "ಕ್ಷೇತ್ರಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
       schemesBtn: "೫ ಗ್ಯಾರಂಟಿ ಯೋಜನೆಗಳು",
@@ -210,7 +210,7 @@ export const translations: Record<Language, Translations> = {
       emptyTimeline: "ಈ ನಾಯಕರಿಗೆ ಇನ್ನೂ ಯಾವುದೇ ಮೈಲಿಗಲ್ಲುಗಳನ್ನು ಪ್ರಕಟಿಸಲಾಗಿಲ್ಲ.",
       emptyInitiatives: "ಯಾವುದೇ ಸಾರ್ವಜನಿಕ ಯೋಜನೆಗಳು ದಾಖಲಾಗಿಲ್ಲ.",
       independentDisclaimer:
-        "ಈ ವಿವರವನ್ನು ಯುಕ್ರಿಯೇಟ್ಸ್ (UCreates) ಸ್ವತಂತ್ರವಾಗಿ ಸಾರ್ವಜನಿಕ ಗೆಜೆಟ್‌ಗಳಿಂದ ಸಂಗ್ರಹಿಸಿದೆ. ಇದು ಯಾವುದೇ ಸರ್ಕಾರದ ಅಧಿಕೃತ ಅಂಗೀಕಾರವಲ್ಲ.",
+        "ಕರ್ನಾಟಕ ವಿಧಾನ ಪರಿಷತ್ ಮತ್ತು ಸರ್ಕಾರದ ಅಧಿಕೃತ ಗೆಜೆಟ್‌ಗಳಿಂದ ಪರಿಶೀಲಿಸಲ್ಪಟ್ಟ ಮಾಹಿತಿ. ತಂತ್ರಜ್ಞಾನ ಪಾಲುದಾರ: ಯುಕ್ರಿಯೇಟ್ಸ್ (UCreates).",
     },
     status: {
       published: "ಪ್ರಕಟಿತ",
@@ -220,15 +220,15 @@ export const translations: Record<Language, Translations> = {
       archived: "ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ",
     },
     footer: {
-      tagline: "ಸಾರ್ವಜನಿಕ ಸೇವೆಯ ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ದಾಖಲೆ.",
+      tagline: "ಕರ್ನಾಟಕ ಕಾಂಗ್ರೆಸ್ ಅಧಿಕೃತ ನಾಯಕತ್ವ ಮತ್ತು ಆಡಳಿತ ವೇದಿಕೆ.",
       disclaimer:
-        "ಯುಕ್ರಿಯೇಟ್ಸ್ ಲೀಡರ್‌ಶಿಪ್ ಸ್ಟುಡಿಯೋ ಒಂದು ಸ್ವತಂತ್ರ ಡಿಜಿಟಲ್ ಪ್ರಕಾಶನ ತಂತ್ರಜ್ಞಾನ. ಕರ್ನಾಟಕ ಸರ್ಕಾರ ಅಥವಾ ಯಾವುದೇ ರಾಜಕೀಯ ಪಕ್ಷದೊಂದಿಗೆ ನೇರ ಸಂಬಂಧ ಹೊಂದಿಲ್ಲ.",
+        "ಕರ್ನಾಟಕ ಪ್ರದೇಶ ಕಾಂಗ್ರೆಸ್ ಸಮಿತಿ (KPCC) ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ವೇದಿಕೆ. ತಂತ್ರಜ್ಞಾನ ಅಭಿವೃದ್ಧಿ ಪಾಲುದಾರ: ಯುಕ್ರಿಯೇಟ್ಸ್ (UCreates). ಎಲ್ಲಾ ಖಾತೆ ಮತ್ತು ಯೋಜನೆ ವಿವರಗಳನ್ನು ಅಧಿಕೃತ ಗೆಜೆಟ್‌ಗಳಿಂದ ಪರಿಶೀಲಿಸಲಾಗಿದೆ.",
       rights: "ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
       about: "ಕುರಿತು & ಮಾನದಂಡಗಳು",
       privacy: "ಗೌಪ್ಯತಾ ನೀತಿ",
       terms: "ಬಳಕೆಯ ನಿಯಮಗಳು",
       corrections: "ತಿದ್ದುಪಡಿ ಮತ್ತು ಅಪ್‌ಡೇಟ್",
-      karnatakaEdition: "ಕರ್ನಾಟಕ ಆವೃತ್ತಿ ೧.೦",
+      karnatakaEdition: "ಕರ್ನಾಟಕ ಕಾಂಗ್ರೆಸ್ ವೇದಿಕೆ · ಯುಕ್ರಿಯೇಟ್ಸ್ ನಿರ್ಮಿತ",
     },
   },
 };

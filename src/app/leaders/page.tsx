@@ -7,6 +7,21 @@ import { PublicationStatus } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Karnataka Congress Leadership Directory | ಕರ್ನಾಟಕ ಪ್ರದೇಶ ಕಾಂಗ್ರೆಸ್ ಸಮಿತಿ",
+  description:
+    "Verified executive leadership, council of ministers, and departmental portfolios of the Karnataka Pradesh Congress Committee (KPCC).",
+};
+
+const showcaseSlugs = [
+  "dk-shivakumar",
+  "g-parameshwara",
+  "priyank-kharge",
+  "mb-patil",
+  "satish-jarkiholi",
+  "krishna-byre-gowda",
+];
+
 export default async function LeadersDirectoryPage(props: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
@@ -20,9 +35,10 @@ export default async function LeadersDirectoryPage(props: {
   const currentPage = parseInt((typeof sp.page === "string" ? sp.page : "1") || "1", 10);
   const pageSize = 12;
 
-  // Build Prisma query condition
+  // Build Prisma query condition strictly scoped to 6 executive leaders
   const where: Record<string, unknown> = {
     publicationStatus: PublicationStatus.PUBLISHED,
+    slug: { in: showcaseSlugs },
   };
 
   const orConditions: Record<string, unknown>[] = [];
@@ -85,9 +101,9 @@ export default async function LeadersDirectoryPage(props: {
     }),
   ]);
 
-  // Extract distinct regions & roles for dynamic filter dropdowns
+  // Extract distinct regions & roles for dynamic filter dropdowns scoped to the 6 showcase leaders
   const allPublished = await prisma.leaderProfile.findMany({
-    where: { publicationStatus: PublicationStatus.PUBLISHED },
+    where: { publicationStatus: PublicationStatus.PUBLISHED, slug: { in: showcaseSlugs } },
     select: { currentRole: true, region: true },
   });
 

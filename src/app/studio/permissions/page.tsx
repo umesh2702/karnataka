@@ -34,7 +34,7 @@ export default function PermissionsManagementPage() {
   });
   const [submitting, setSubmitting] = useState(false);
 
-  const fetchRecords = async () => {
+  const refreshRecords = async () => {
     try {
       const res = await fetch("/api/permissions");
       if (res.ok) {
@@ -47,22 +47,35 @@ export default function PermissionsManagementPage() {
     }
   };
 
-  const fetchProfiles = async () => {
-    try {
-      const res = await fetch("/api/leaders");
-      if (res.ok) {
-        const data = await res.json();
-        setProfiles(data.profiles || []);
-        if (data.profiles?.[0]) {
-          setFormData((prev) => ({ ...prev, profileId: data.profiles[0].id }));
-        }
-      }
-    } catch {}
-  };
-
   useEffect(() => {
-    fetchRecords();
-    fetchProfiles();
+    let ignore = false;
+    async function init() {
+      try {
+        const [recRes, profRes] = await Promise.all([
+          fetch("/api/permissions"),
+          fetch("/api/leaders"),
+        ]);
+        if (ignore) return;
+        if (recRes.ok) {
+          const recData = await recRes.json();
+          setRecords(recData.records || []);
+        }
+        if (profRes.ok) {
+          const profData = await profRes.json();
+          setProfiles(profData.profiles || []);
+          if (profData.profiles?.[0]) {
+            setFormData((prev) => ({ ...prev, profileId: profData.profiles[0].id }));
+          }
+        }
+      } catch {}
+      finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    init();
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleCreate = async (e: React.FormEvent) => {
@@ -84,7 +97,7 @@ export default function PermissionsManagementPage() {
           notes: "",
           reviewStatus: "VALID",
         });
-        await fetchRecords();
+        await refreshRecords();
       }
     } catch {}
     finally {

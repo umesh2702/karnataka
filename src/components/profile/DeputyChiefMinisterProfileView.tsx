@@ -13,6 +13,7 @@ import {
   ChevronRight,
   GraduationCap,
   Shield,
+  Landmark,
 } from "lucide-react";
 
 interface Milestone {
@@ -107,20 +108,20 @@ export default function DeputyChiefMinisterProfileView({
 
   const dcmPortfolios = [
     {
-      title: "Ministry of Home Affairs",
-      department: "Home Department",
-      focus: "State Police, Law & Order, Cyber Command, Intelligence & Fire Services",
+      title: "Revenue Administration & Land Governance",
+      department: "Department of Revenue",
+      focus: "Bhoomi 3.0, Digital Land Records, Survey Reforms & Disaster Mitigation",
       description:
-        "Direct executive supervision of Karnataka State Police (KSP), modernized forensic science laboratories, and centralized Dial 112 emergency response network.",
-      icon: <Shield className="w-5 h-5 text-[#922036]" />,
+        "Statewide supervision of land administration, digitization of farmer tenancy records, taluk revenue modernization, and Karnataka State Natural Disaster Monitoring Centre (KSNDMC) operations.",
+      icon: <Landmark className="w-5 h-5 text-[#173B65]" />,
     },
     {
-      title: "Higher Education & Research Leadership",
-      department: "Higher Education Department",
-      focus: "State Universities, Technical Institutions & Research Grants",
+      title: "Youth Empowerment & Sports Administration",
+      department: "Department of Youth Empowerment and Sports (DYES)",
+      focus: "District Sports Complexes, Rural Athletics, Khelo India & Youth Welfare",
       description:
-        "Curriculum modernizations, university governance reforms, and academic research partnerships building upon Dr. Parameshwara's agricultural and doctoral foundation.",
-      icon: <GraduationCap className="w-5 h-5 text-indigo-700" />,
+        "Direct ministerial supervision of state sports infrastructure, rural athlete training centers, sports scholarships, and modern athletic facilities across all 31 districts.",
+      icon: <GraduationCap className="w-5 h-5 text-[#F47A20]" />,
     },
     {
       title: "Koratagere (SC) Legislative Development",
@@ -128,7 +129,7 @@ export default function DeputyChiefMinisterProfileView({
       focus: "Tumakuru District Irrigation, Drinking Water & Rural Education",
       description:
         "Dedicated representation of Koratagere reserved assembly constituency in Tumakuru, advancing local check-dam irrigation networks and rural educational campuses.",
-      icon: <MapPin className="w-5 h-5 text-emerald-700" />,
+      icon: <MapPin className="w-5 h-5 text-[#16864A]" />,
     },
   ];
 
@@ -144,7 +145,7 @@ export default function DeputyChiefMinisterProfileView({
             <div className="flex items-center gap-2 text-[#68645F]">
               <Link href="/" className="hover:text-[#17191B] transition-colors">Home</Link>
               <ChevronRight className="w-3.5 h-3.5 text-[#888]" />
-              <Link href="/leaders" className="hover:text-[#17191B] transition-colors">Leadership Showcase</Link>
+              <Link href="/leaders" className="hover:text-[#17191B] transition-colors">Leadership Directory</Link>
               <ChevronRight className="w-3.5 h-3.5 text-[#888]" />
               <span className="text-[#17191B] font-semibold">Deputy Chief Minister</span>
             </div>
@@ -162,8 +163,8 @@ export default function DeputyChiefMinisterProfileView({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-8 sm:pt-10 items-center">
             {/* Left: Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#922036]/10 text-[#922036] text-xs font-semibold uppercase tracking-wider">
-                <ShieldCheck className="w-4 h-4" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#173B65]/10 text-[#173B65] text-xs font-semibold uppercase tracking-wider border border-[#173B65]/20">
+                <ShieldCheck className="w-4 h-4 text-[#F47A20]" />
                 Deputy Chief Minister of Karnataka
               </div>
 
@@ -172,16 +173,16 @@ export default function DeputyChiefMinisterProfileView({
                   {profile.displayName}
                 </h1>
                 {profile.kannadaName && (
-                  <p className="text-2xl sm:text-3xl font-kannada font-bold text-[#922036] mt-2">
+                  <p className="text-2xl sm:text-3xl font-kannada font-bold text-[#173B65] mt-2">
                     {profile.kannadaName}
                   </p>
                 )}
                 <p className="text-base sm:text-lg text-[#68645F] font-light mt-3 flex items-center gap-2">
                   <span className="font-semibold text-[#17191B]">Deputy Chief Minister</span>
                   <span>·</span>
-                  <span>Minister for Home Affairs</span>
+                  <span className="font-medium text-[#173B65]">Minister for Revenue & Sports</span>
                   <span>·</span>
-                  <span className="font-mono text-xs text-[#922036]">Ph.D. Adelaide</span>
+                  <span className="font-mono text-xs text-[#F47A20] font-semibold">Ph.D. Adelaide</span>
                 </p>
               </div>
 
@@ -196,7 +197,7 @@ export default function DeputyChiefMinisterProfileView({
                   <div className="text-[11px] text-[#68645F]">Karnataka Assembly</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-serif font-bold text-[#922036]">8 Years</div>
+                  <div className="text-xl sm:text-2xl font-serif font-bold text-[#173B65]">8 Years</div>
                   <div className="text-[11px] text-[#68645F]">KPCC President (2010–18)</div>
                 </div>
                 <div>
@@ -213,17 +214,17 @@ export default function DeputyChiefMinisterProfileView({
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href="#portfolios"
-                  className="px-5 py-2.5 rounded-lg bg-[#922036] hover:bg-[#7A1629] text-white font-medium text-xs sm:text-sm transition-all shadow-sm flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-lg bg-[#173B65] hover:bg-[#0F2744] text-white font-medium text-xs sm:text-sm transition-all shadow-sm flex items-center gap-2 border border-[#F47A20]/40"
                 >
-                  <span>Explore Home Affairs & Portfolios</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Explore Revenue & Portfolios</span>
+                  <ArrowRight className="w-4 h-4 text-[#F47A20]" />
                 </a>
 
                 <Link
                   href="/constituencies/koratagere"
-                  className="px-5 py-2.5 rounded-lg bg-white border border-[#E6E1DA] hover:border-[#922036] text-[#17191B] font-medium text-xs sm:text-sm transition-all shadow-2xs flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-lg bg-white border border-[#E6E1DA] hover:border-[#173B65] text-[#17191B] font-medium text-xs sm:text-sm transition-all shadow-2xs flex items-center gap-2"
                 >
-                  <MapPin className="w-4 h-4 text-[#922036]" />
+                  <MapPin className="w-4 h-4 text-[#173B65]" />
                   <span>Koratagere Constituency Profile</span>
                 </Link>
               </div>
@@ -250,6 +251,7 @@ export default function DeputyChiefMinisterProfileView({
             </div>
           </div>
         </div>
+        <div className="h-[2px] w-full tricolor-hairline opacity-75 mt-8" />
       </section>
 
       {/* =========================================================================
@@ -262,7 +264,7 @@ export default function DeputyChiefMinisterProfileView({
             onClick={() => setActiveTab("portfolios")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "portfolios"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -273,7 +275,7 @@ export default function DeputyChiefMinisterProfileView({
             onClick={() => setActiveTab("timeline")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "timeline"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -284,7 +286,7 @@ export default function DeputyChiefMinisterProfileView({
             onClick={() => setActiveTab("academic")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "academic"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -295,7 +297,7 @@ export default function DeputyChiefMinisterProfileView({
             onClick={() => setActiveTab("sources")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "sources"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -310,14 +312,14 @@ export default function DeputyChiefMinisterProfileView({
       {activeTab === "portfolios" && (
         <section id="portfolios" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#922036]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#173B65]">
               Executive Portfolios
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#17191B] mt-1">
               Portfolios & Administrative Mandates
             </h2>
             <p className="text-sm text-[#68645F] mt-1 font-light max-w-2xl">
-              Under Dr. G. Parameshwara&apos;s executive stewardship as Deputy Chief Minister and Home Minister.
+              Under Dr. G. Parameshwara&apos;s executive stewardship as Deputy Chief Minister, Minister for Revenue and Youth Empowerment & Sports.
             </p>
           </div>
 

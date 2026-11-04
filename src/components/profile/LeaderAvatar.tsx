@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 
 interface LeaderAvatarProps {
   src?: string | null;
@@ -44,46 +43,64 @@ export default function LeaderAvatar({
 
   const hasValidImage = src && !imageError;
 
-  const sizeClasses = {
-    sm: "w-12 h-12 text-xs",
-    md: "w-16 h-16 sm:w-20 sm:h-20 text-sm",
-    lg: "w-28 h-28 sm:w-36 sm:h-36 text-xl",
-    hero: "w-full h-full min-h-[360px] text-3xl",
-  }[size];
+  const isFullContainer = className.includes("w-full") || className.includes("h-full");
 
-  const aspectClass = aspect === "portrait" && size === "hero" ? "aspect-3/4" : aspect === "portrait" && size === "lg" ? "aspect-3/4" : "aspect-square";
+  const sizeClasses = isFullContainer
+    ? "w-full h-full text-2xl"
+    : {
+        sm: "w-12 h-12 text-xs",
+        md: "w-16 h-16 sm:w-20 sm:h-20 text-sm",
+        lg: "w-28 h-28 sm:w-36 sm:h-36 text-xl",
+        hero: "w-full h-full min-h-[360px] text-3xl",
+      }[size];
+
+  const aspectClass =
+    isFullContainer
+      ? ""
+      : aspect === "portrait" && size === "hero"
+      ? "aspect-3/4"
+      : aspect === "portrait" && size === "lg"
+      ? "aspect-3/4"
+      : "aspect-square";
 
   if (!hasValidImage) {
     return (
       <div
-        className={`relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-[#E6E1DA] bg-gradient-to-br from-[#F4EFEB] via-[#EFE9DF] to-[#E5DECة/10] text-[#17191B] select-none ${aspectClass} ${sizeClasses} ${className}`}
+        className={`relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-[#E6E1DA] bg-gradient-to-br from-[#F8F7F3] via-[#F0EDE6] to-[#EAE5DC] text-[#242424] select-none ${aspectClass} ${sizeClasses} ${className}`}
         aria-label={`Official Record Monogram for ${name}`}
       >
         {/* Subtle topographic contour background */}
         <div className="absolute inset-0 opacity-[0.08] pointer-events-none topo-lines" />
-        
+
         {/* Faint Kannada glyph in background */}
         {kannadaInitial && (
-          <span className="absolute text-[80px] sm:text-[110px] font-kannada font-bold text-[#922036]/10 select-none pointer-events-none -bottom-4 -right-2">
+          <span className="absolute text-[80px] sm:text-[110px] font-kannada font-bold text-[#173B65]/10 select-none pointer-events-none -bottom-4 -right-2">
             {kannadaInitial}
           </span>
         )}
 
-        {/* Central Monogram */}
-        <div className="relative z-10 flex flex-col items-center justify-center">
-          <div className="w-8 h-0.5 bg-[#922036]/40 mb-1" />
-          <span className="font-serif font-bold text-[#922036] tracking-wider leading-none">
+        {/* Central Monogram with Congress subtle tricolor accents */}
+        <div className="relative z-10 flex flex-col items-center justify-center p-4 text-center">
+          <div className="flex items-center gap-1 mb-2">
+            <div className="w-3 h-0.5 bg-[#F47A20] rounded-full" />
+            <div className="w-3 h-0.5 bg-white border border-[#E6E1DA] rounded-full" />
+            <div className="w-3 h-0.5 bg-[#16864A] rounded-full" />
+          </div>
+          <span className="font-serif font-bold text-[#173B65] text-xl sm:text-2xl tracking-wider leading-none">
             {initials}
           </span>
-          <span className="text-[9px] uppercase tracking-widest text-[#68645F] mt-1 font-sans font-semibold">
+          <span className="text-[10px] uppercase tracking-widest text-[#68645F] mt-1.5 font-sans font-semibold">
             Archival Record
+          </span>
+          <span className="text-[11px] text-[#242424] font-medium mt-1 line-clamp-1 max-w-[140px]">
+            {name}
           </span>
         </div>
 
-        {/* Neutral provenance label on hero sizes */}
+        {/* Provenance label on hero sizes */}
         {size === "hero" && (
           <div className="absolute bottom-3 left-3 right-3 text-center">
-            <span className="inline-block px-2.5 py-1 text-[11px] text-[#68645F] bg-white/80 backdrop-blur-xs rounded border border-[#E6E1DA]">
+            <span className="inline-block px-2.5 py-1 text-[11px] text-[#68645F] bg-white/90 backdrop-blur-xs rounded border border-[#E6E1DA]">
               Official Public Record Monogram • Photo Pending Gazette Authorization
             </span>
           </div>

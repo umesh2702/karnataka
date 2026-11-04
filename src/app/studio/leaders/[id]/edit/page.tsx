@@ -98,19 +98,44 @@ export default function EditLeaderProfilePage() {
     }
   };
 
-  const fetchSources = async () => {
-    try {
-      const res = await fetch("/api/sources");
-      if (res.ok) {
-        const data = await res.json();
-        setAvailableSources(data.sources || []);
-      }
-    } catch {}
-  };
-
   useEffect(() => {
-    fetchProfile();
-    fetchSources();
+    let ignore = false;
+    async function load() {
+      try {
+        const [profRes, srcRes] = await Promise.all([
+          fetch(`/api/leaders/${id}`),
+          fetch("/api/sources"),
+        ]);
+        if (ignore) return;
+        if (profRes.ok) {
+          const profData = await profRes.json();
+          setProfile({
+            ...profData.profile,
+            milestones: profData.profile.milestones || [],
+            initiatives: profData.profile.initiatives || [],
+          });
+        }
+        if (srcRes.ok) {
+          const srcData = await srcRes.json();
+          setAvailableSources(srcData.sources || []);
+        }
+      } catch (err: unknown) {
+        if (!ignore) {
+          setStatusMessage({
+            type: "error",
+            text: err instanceof Error ? err.message : "Error loading profile",
+          });
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+    load();
+    return () => {
+      ignore = true;
+    };
   }, [id]);
 
   const handleSaveDraft = async () => {

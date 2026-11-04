@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: LeaderPageProps): Promise<Met
   });
 
   if (!profile) {
-    return { title: "Profile Not Found | UCreates Leadership Showcase" };
+    return { title: "Profile Not Found | Karnataka Congress Official Digital Platform" };
   }
 
   const title = `${profile.displayName} — ${profile.currentRole} | Karnataka Congress Platform`;

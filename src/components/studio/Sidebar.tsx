@@ -52,15 +52,19 @@ export default function Sidebar({ pendingReviewsCount = 0 }: SidebarProps) {
       {/* Brand & Studio Title */}
       <div className="p-5 border-b border-[#E6E1DA]">
         <Link href="/studio" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#922036] text-white flex items-center justify-center font-serif font-bold text-base">
-            U
+          <div className="w-9 h-9 rounded-full bg-white border border-[#E5E1D8] shadow-2xs p-1 flex items-center justify-center shrink-0">
+            <img
+              src="/images/inc-logo.svg"
+              alt="Indian National Congress Symbol"
+              className="w-7 h-7 object-contain"
+            />
           </div>
           <div>
             <h2 className="font-serif font-bold text-sm text-[#17191B] leading-none">
-              UCreates Studio
+              Karnataka Congress
             </h2>
-            <span className="text-[10px] font-semibold text-[#922036] uppercase tracking-wider">
-              Karnataka Editorial Desk
+            <span className="text-[10px] font-semibold text-[#173B65] uppercase tracking-wider block mt-0.5">
+              Digital Administration
             </span>
           </div>
         </Link>
@@ -70,9 +74,9 @@ export default function Sidebar({ pendingReviewsCount = 0 }: SidebarProps) {
       <div className="p-4 border-b border-[#E6E1DA]/60">
         <Link
           href="/studio/leaders/new"
-          className="flex items-center justify-center gap-2 w-full py-2.5 px-3 bg-[#922036] text-white text-xs font-semibold rounded-lg hover:bg-[#7A1629] transition-colors shadow-2xs"
+          className="flex items-center justify-center gap-2 w-full py-2.5 px-3 bg-[#173B65] text-white text-xs font-semibold rounded-lg hover:bg-[#0F2744] transition-colors shadow-2xs border border-[#F47A20]/40"
         >
-          <PlusCircle className="w-3.5 h-3.5" />
+          <PlusCircle className="w-3.5 h-3.5 text-[#F47A20]" />
           <span>New Leader Profile</span>
         </Link>
       </div>
@@ -92,16 +96,16 @@ export default function Sidebar({ pendingReviewsCount = 0 }: SidebarProps) {
               href={link.href}
               className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                 isActive
-                  ? "bg-[#922036]/10 text-[#922036] font-semibold"
+                  ? "bg-[#173B65]/10 text-[#173B65] font-semibold border-l-2 border-[#F47A20]"
                   : "text-[#68645F] hover:bg-[#F8F6F2] hover:text-[#17191B]"
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <Icon className={`w-4 h-4 ${isActive ? "text-[#922036]" : "text-[#888]"}`} />
+                <Icon className={`w-4 h-4 ${isActive ? "text-[#173B65]" : "text-[#888]"}`} />
                 <span>{link.label}</span>
               </div>
               {link.badge !== undefined && (
-                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#922036] text-white">
+                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#F47A20] text-white">
                   {link.badge}
                 </span>
               )}
@@ -115,7 +119,7 @@ export default function Sidebar({ pendingReviewsCount = 0 }: SidebarProps) {
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between text-xs text-[#68645F] hover:text-[#922036] transition-colors font-medium"
+          className="flex items-center justify-between text-xs text-[#68645F] hover:text-[#173B65] transition-colors font-medium"
         >
           <span>View Public Platform</span>
           <ExternalLink className="w-3.5 h-3.5" />

@@ -4,15 +4,15 @@ import "./globals.css";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "UCreates Leadership Studio — Karnataka Edition",
+  title: "Karnataka Congress — Official Digital Platform | ಕರ್ನಾಟಕ ಪ್ರದೇಶ ಕಾಂಗ್ರೆಸ್ ಸಮಿತಿ",
   description:
-    "A structured, source-aware digital publication platform documenting public leadership, career milestones, and verified service records across Karnataka, India.",
+    "Official digital leadership, governance and citizen engagement platform of the Karnataka Pradesh Congress Committee (KPCC). Documenting executive leadership portfolios, flagship welfare guarantees, and verifiable public service records.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   openGraph: {
-    title: "UCreates Leadership Studio — Karnataka Edition",
-    description: "Public Leadership. Clearly Documented. Verified records and sourced public milestones.",
+    title: "Karnataka Congress — Official Digital Platform",
+    description: "Official executive leadership, verified departmental portfolios, and flagship 5 Guarantees citizen welfare platform.",
     url: "/",
-    siteName: "UCreates Leadership Studio",
+    siteName: "Karnataka Congress Digital Platform",
     locale: "en_IN",
     type: "website",
   },

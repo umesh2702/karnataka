@@ -124,41 +124,41 @@ export default function CabinetMinisterProfileView({
     switch (profile.slug) {
       case "priyank-kharge":
         return {
-          deptName: "Rural Development & Panchayat Raj and Electronics, IT/BT",
-          badge: "Innovation & Rural Transformation",
-          icon: <Sparkles className="w-5 h-5 text-indigo-700" />,
+          deptName: "Home (excluding Intelligence), IT & BT, and E-Governance",
+          badge: "Internal Security, Technology & E-Governance",
+          icon: <Sparkles className="w-5 h-5 text-[#173B65]" />,
           mandate:
-            "Spearheading the 'Beyond Bengaluru' technology cluster dispersion, Gram Panchayat digital governance, Elevate innovation funding, and rural industrial livelihood hubs.",
+            "Ministerial supervision of Karnataka State Police administration and law enforcement (excluding Intelligence), advancing IT/BT innovation ecosystems, Beyond Bengaluru technology clusters, and statewide e-governance service delivery platforms.",
         };
       case "mb-patil":
         return {
-          deptName: "Commerce, Large & Medium Industries & Infrastructure",
-          badge: "Industrial Infrastructure",
-          icon: <Building2 className="w-5 h-5 text-blue-700" />,
+          deptName: "Large & Medium Industries and Infrastructure Development",
+          badge: "Industrial Growth & Infrastructure",
+          icon: <Building2 className="w-5 h-5 text-[#173B65]" />,
           mandate:
-            "Attracting global capital investment, manufacturing cluster development along industrial corridors (CBIC, BMIC), and major infrastructure projects.",
+            "Direct ministerial oversight of Karnataka's manufacturing clusters, aerospace and semiconductor industrial parks, major investor summits, and state infrastructure connectivity projects.",
         };
       case "satish-jarkiholi":
         return {
           deptName: "Public Works Department (PWD)",
-          badge: "State Roadway Connectivity",
-          icon: <Layers className="w-5 h-5 text-amber-700" />,
+          badge: "State Roadway Connectivity & Public Works",
+          icon: <Layers className="w-5 h-5 text-[#F47A20]" />,
           mandate:
-            "Executing statewide state highway four-laning, major district road upgrades, bridge infrastructure, and freight corridor expansion across northern Karnataka.",
+            "Executing statewide state highway four-laning, major district road upgrades, bridge infrastructure, and freight corridor expansion across all 31 districts of Karnataka.",
         };
       case "krishna-byre-gowda":
         return {
-          deptName: "Department of Revenue & Parliamentary Affairs",
-          badge: "Land Governance & Digital Titles",
-          icon: <Landmark className="w-5 h-5 text-[#922036]" />,
+          deptName: "Greater Bengaluru Development and Parliamentary Affairs and Legislation",
+          badge: "Metropolitan Planning & Legislative Governance",
+          icon: <Landmark className="w-5 h-5 text-[#16864A]" />,
           mandate:
-            "Modernizing revenue land registries (Bhoomi, Kaveri 2.0), streamlining mutation workflows, state disaster relief administration, and legislative business.",
+            "Comprehensive oversight of Greater Bengaluru metropolitan planning, civic infrastructure coordination, suburban transit connectivity, and managing legislative business and statutory drafting in the Karnataka State Legislature.",
         };
       default:
         return {
           deptName: profile.portfolio || "Government of Karnataka",
           badge: "Cabinet Ministry",
-          icon: <Building2 className="w-5 h-5 text-[#922036]" />,
+          icon: <Building2 className="w-5 h-5 text-[#173B65]" />,
           mandate: profile.shortBio,
         };
     }
@@ -178,7 +178,7 @@ export default function CabinetMinisterProfileView({
             <div className="flex items-center gap-2 text-[#68645F]">
               <Link href="/" className="hover:text-[#17191B] transition-colors">Home</Link>
               <ChevronRight className="w-3.5 h-3.5 text-[#888]" />
-              <Link href="/leaders" className="hover:text-[#17191B] transition-colors">Leadership Showcase</Link>
+              <Link href="/leaders" className="hover:text-[#17191B] transition-colors">Leadership Directory</Link>
               <ChevronRight className="w-3.5 h-3.5 text-[#888]" />
               <span className="text-[#17191B] font-semibold">{profile.displayName}</span>
             </div>
@@ -207,7 +207,7 @@ export default function CabinetMinisterProfileView({
                   priority={true}
                 />
                 <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#922036] text-white shadow-xs">
+                  <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#173B65] text-white shadow-xs border border-[#F47A20]/40">
                     Cabinet Minister
                   </span>
                 </div>
@@ -216,7 +216,7 @@ export default function CabinetMinisterProfileView({
 
             {/* Profile Intro */}
             <div className="md:col-span-8 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E6E1DA] text-[#922036] text-xs font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#173B65]/10 border border-[#173B65]/20 text-[#173B65] text-xs font-semibold uppercase tracking-wider">
                 {dept.badge}
               </div>
 
@@ -225,7 +225,7 @@ export default function CabinetMinisterProfileView({
                   {profile.displayName}
                 </h1>
                 {profile.kannadaName && (
-                  <p className="text-xl sm:text-2xl font-kannada font-bold text-[#922036] mt-1.5">
+                  <p className="text-xl sm:text-2xl font-kannada font-bold text-[#173B65] mt-1.5">
                     {profile.kannadaName}
                   </p>
                 )}
@@ -264,6 +264,7 @@ export default function CabinetMinisterProfileView({
             </div>
           </div>
         </div>
+        <div className="h-[2px] w-full tricolor-hairline opacity-75 mt-8" />
       </section>
 
       {/* =========================================================================
@@ -276,7 +277,7 @@ export default function CabinetMinisterProfileView({
             onClick={() => setActiveTab("department")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "department"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -287,7 +288,7 @@ export default function CabinetMinisterProfileView({
             onClick={() => setActiveTab("initiatives")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "initiatives"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -298,7 +299,7 @@ export default function CabinetMinisterProfileView({
             onClick={() => setActiveTab("timeline")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "timeline"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >
@@ -309,7 +310,7 @@ export default function CabinetMinisterProfileView({
             onClick={() => setActiveTab("sources")}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
               activeTab === "sources"
-                ? "bg-[#922036] text-white shadow-xs"
+                ? "bg-[#173B65] text-white shadow-xs"
                 : "text-[#68645F] hover:bg-[#FAF8F5] hover:text-[#17191B]"
             }`}
           >

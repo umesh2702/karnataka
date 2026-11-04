@@ -3,7 +3,7 @@ import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { ProjectStage } from "@prisma/client";
+import { ProjectStage, VerificationStatus } from "@prisma/client";
 import {
   Layers,
   Search,
@@ -13,6 +13,8 @@ import {
   Calendar,
   AlertCircle,
   FileCheck2,
+  Clock,
+  ShieldAlert,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -20,6 +22,7 @@ export const dynamic = "force-dynamic";
 interface ProjectsManagerProps {
   searchParams: Promise<{
     stage?: string;
+    status?: string;
     search?: string;
   }>;
 }
@@ -30,14 +33,19 @@ export default async function ProjectsManagerPage({
   const session = await getCurrentUser();
   if (!session) redirect("/studio/login");
 
-  const { stage, search } = await searchParams;
+  const { stage, status, search } = await searchParams;
   const filterStage = stage || "ALL";
+  const filterStatus = status || "ALL";
   const searchQuery = search || "";
 
   const where: Record<string, unknown> = {};
 
   if (filterStage !== "ALL") {
     where.stage = filterStage as ProjectStage;
+  }
+
+  if (filterStatus !== "ALL") {
+    where.verificationStatus = filterStatus as VerificationStatus;
   }
 
   if (searchQuery) {
@@ -107,13 +115,24 @@ export default async function ProjectsManagerPage({
             defaultValue={filterStage}
             className="px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E6E1DA] rounded-lg text-[#17191B]"
           >
-            <option value="ALL">All Stages</option>
+            <option value="ALL">All Project Stages</option>
             <option value="PROPOSED">Proposed</option>
             <option value="APPROVED">Approved</option>
             <option value="ONGOING">Ongoing</option>
             <option value="COMPLETED">Completed</option>
             <option value="DELAYED">Delayed</option>
             <option value="CANCELLED">Cancelled</option>
+          </select>
+
+          <select
+            name="status"
+            defaultValue={filterStatus}
+            className="px-3 py-1.5 text-xs bg-[#FAF8F5] border border-[#E6E1DA] rounded-lg text-[#17191B]"
+          >
+            <option value="ALL">All Verification States</option>
+            <option value="VERIFIED">Verified Evidence</option>
+            <option value="NEEDS_REVIEW">Needs Review / Flagged</option>
+            <option value="UNCHECKED">Unchecked</option>
           </select>
 
           <button
@@ -123,7 +142,7 @@ export default async function ProjectsManagerPage({
             Filter
           </button>
 
-          {(searchQuery || filterStage !== "ALL") && (
+          {(searchQuery || filterStage !== "ALL" || filterStatus !== "ALL") && (
             <Link
               href="/studio/projects"
               className="px-3 py-1.5 border border-[#E6E1DA] text-[#68645F] text-xs font-medium rounded-lg hover:bg-[#F8F6F2]"
@@ -149,7 +168,8 @@ export default async function ProjectsManagerPage({
                 <th className="py-3 px-4">Department</th>
                 <th className="py-3 px-4">Representative</th>
                 <th className="py-3 px-4">Stage</th>
-                <th className="py-3 px-4">Budget</th>
+                <th className="py-3 px-4">Budget / Stage</th>
+                <th className="py-3 px-4">Audit Status</th>
                 <th className="py-3 px-4">Evidence</th>
               </tr>
             </thead>
@@ -204,6 +224,24 @@ export default async function ProjectsManagerPage({
                     {p.budgetAmount || "N/A"}
                   </td>
                   <td className="py-3 px-4">
+                    {p.verificationStatus === "VERIFIED" ? (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                        Verified
+                      </span>
+                    ) : p.verificationStatus === "NEEDS_REVIEW" ? (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                        <AlertCircle className="w-3 h-3 text-amber-600" />
+                        Needs Review
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                        <Clock className="w-3 h-3 text-slate-500" />
+                        Unchecked
+                      </span>
+                    )}
+                  </td>
+                  <td className="py-3 px-4">
                     {p.evidenceUrl ? (
                       <a
                         href={p.evidenceUrl}
@@ -218,7 +256,7 @@ export default async function ProjectsManagerPage({
                     ) : (
                       <span className="text-amber-700 text-[11px] flex items-center gap-1">
                         <AlertCircle className="w-3.5 h-3.5" />
-                        <span>Unverified</span>
+                        <span>Uncited</span>
                       </span>
                     )}
                   </td>

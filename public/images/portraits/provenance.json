@@ -1,38 +1,102 @@
 {
+  "inc-logo": {
+    "localPath": "/images/inc-logo.svg",
+    "assetType": "Third-Party Vector Reproduction of Political Party Symbol",
+    "subject": "Indian National Congress (INC) Registered Election Symbol (Right Palm in Tricolor Circle)",
+    "source": "Wikimedia Commons / Vecta vector repository (File:Indian_National_Congress_hand_logo.svg)",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Indian_National_Congress_hand_logo.svg",
+    "publisher": "Third-party community vector upload (not official party asset pack)",
+    "isOfficialPartyDirectAsset": false,
+    "license": "Unspecified third-party vector. Registered election symbol under the Election Symbols (Reservation and Allotment) Order, 1968. Commercial or open license status is uncertain.",
+    "usageRightsStatus": "FLAGGED_FOR_REPLACEMENT_OR_APPROVAL",
+    "complianceAction": "FLAGGED: Unofficial third-party graphic reproduction. Replace with an official high-resolution asset or obtain formal written usage clearance from the Karnataka Pradesh Congress Committee (KPCC) prior to public external release.",
+    "attributionRequirements": "The Indian National Congress retains all proprietary rights to its name, insignia, and registered symbol. Independent digital technology prototype developed by UCreates; no party endorsement, authorization, or affiliation is claimed.",
+    "permittedUse": "Non-commercial institutional technology demonstration and software prototyping only.",
+    "modificationPermitted": false,
+    "verifiedDate": "2026-11-03T14:30:00.000Z"
+  },
   "dk-shivakumar": {
     "localPath": "/images/portraits/dk-shivakumar.jpg",
     "source": "Press Information Bureau (PIB), Government of India / Wikimedia Commons",
-    "license": "Government Open Data License - India (GODL-India) / Public Domain",
-    "author": "Press Information Bureau",
+    "license": "Government Open Data License - India (GODL-India)",
+    "author": "Press Information Bureau (PIB ID: 154884)",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:DK_Shivakumar.jpg",
-    "subject": "D. K. Shivakumar, Deputy Chief Minister of Karnataka & KPCC President",
-    "verifiedDate": "2026-10-29T11:12:16.372Z"
-  },
-  "siddaramaiah": {
-    "localPath": "/images/portraits/siddaramaiah.jpg",
-    "source": "Press Information Bureau (PIB), Government of India / Wikimedia Commons",
-    "license": "Government Open Data License - India (GODL-India) / Public Domain",
-    "author": "Press Information Bureau",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Siddaramaiah.jpg",
-    "subject": "Siddaramaiah, Chief Minister of Karnataka",
-    "verifiedDate": "2026-10-29T11:12:17.102Z"
+    "subject": "D. K. Shivakumar, Chief Minister of Karnataka & KPCC President",
+    "attributionRequirements": "Attribute to 'Press Information Bureau, Government of India (GODL-India)'",
+    "permittedUse": "Worldwide, royalty-free, non-exclusive license to use, adapt, and distribute under GODL-India terms.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T14:30:00.000Z"
   },
   "g-parameshwara": {
     "localPath": "/images/portraits/g-parameshwara.jpg",
     "source": "Wikimedia Commons",
-    "license": "Creative Commons Attribution-Share Alike 4.0 International",
-    "author": "Wikimedia Contributor / Legislative dossier",
+    "license": "Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)",
+    "author": "Prof_Dr_G_Parameshwara / Karnataka Legislative Council archives",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dr_G_Parameshwara.JPG",
-    "subject": "Dr. G. Parameshwara, Minister for Home Affairs",
-    "verifiedDate": "2026-10-29T11:12:17.322Z"
+    "subject": "Dr. G. Parameshwara, Deputy Chief Minister of Karnataka (Revenue and Sports)",
+    "attributionRequirements": "Attribute to 'Prof_Dr_G_Parameshwara / Wikimedia Commons (CC BY-SA 3.0)'",
+    "permittedUse": "Free to copy, distribute, transmit, and adapt under condition of attribution and share-alike.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T12:00:00.000Z"
   },
   "priyank-kharge": {
     "localPath": "/images/portraits/priyank-kharge.jpg",
     "source": "Wikimedia Commons",
-    "license": "Creative Commons Attribution-Share Alike 4.0 International",
-    "author": "Wikimedia Contributor",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "author": "Office of Priyank Kharge / Indian Youth Congress / Wikimedia Contributor",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Priyank_Kharge.jpg",
-    "subject": "Priyank Kharge, Minister for Rural Development & Panchayat Raj, IT & BT",
-    "verifiedDate": "2026-10-29T11:12:17.376Z"
+    "subject": "Priyank Kharge, Cabinet Minister for Home (excluding Intelligence), IT & BT, and E-Governance",
+    "attributionRequirements": "Attribute to 'Wikimedia Commons (CC BY-SA 4.0)'",
+    "permittedUse": "Free to share and adapt under CC BY-SA 4.0 license terms.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T12:00:00.000Z"
+  },
+  "mb-patil": {
+    "localPath": "/images/portraits/mb-patil.jpg",
+    "source": "Wikimedia Commons",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "author": "Prasanna Patil",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:M_B_Patil_Profile_Photo.jpg",
+    "subject": "M. B. Patil, Cabinet Minister for Large & Medium Industries and Infrastructure Development",
+    "attributionRequirements": "Attribute to 'Prasanna Patil / Wikimedia Commons (CC BY-SA 4.0)'",
+    "permittedUse": "Free to share and adapt under CC BY-SA 4.0 license terms.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T12:00:00.000Z"
+  },
+  "satish-jarkiholi": {
+    "localPath": "/images/portraits/satish-jarkiholi.jpg",
+    "source": "Wikimedia Commons",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "author": "Vishal Sontakki",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Satish_Jarkiholi,_half_length_portrait.jpg",
+    "subject": "Satish Jarkiholi, Cabinet Minister for Public Works",
+    "attributionRequirements": "Attribute to 'Vishal Sontakki / Wikimedia Commons (CC BY-SA 4.0)'",
+    "permittedUse": "Free to share and adapt under CC BY-SA 4.0 license terms.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T12:00:00.000Z"
+  },
+  "krishna-byre-gowda": {
+    "localPath": "/images/portraits/krishna-byre-gowda.jpg",
+    "source": "Wikimedia Commons",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "author": "Legislative Archives / Wikimedia Contributor",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krishna_Byre_Gowda_(2025)_2.jpg",
+    "subject": "Krishna Byre Gowda, Cabinet Minister for Greater Bengaluru Development and Parliamentary Affairs and Legislation",
+    "attributionRequirements": "Attribute to 'Wikimedia Commons (CC BY-SA 4.0)'",
+    "permittedUse": "Free to share and adapt under CC BY-SA 4.0 license terms.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T12:00:00.000Z"
+  },
+  "siddaramaiah": {
+    "localPath": "/images/portraits/siddaramaiah.jpg",
+    "source": "Press Information Bureau (PIB), Government of India / Wikimedia Commons",
+    "license": "Government Open Data License - India (GODL-India)",
+    "author": "Press Information Bureau (PIB)",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Siddaramaiah.jpg",
+    "subject": "Siddaramaiah, Former Chief Minister of Karnataka & Senior CLP Leader",
+    "attributionRequirements": "Attribute to 'Press Information Bureau, Government of India (GODL-India)'",
+    "permittedUse": "Worldwide, royalty-free, non-exclusive license to use, adapt, and distribute under GODL-India terms.",
+    "modificationPermitted": true,
+    "verifiedDate": "2026-11-03T12:00:00.000Z"
   }
 }

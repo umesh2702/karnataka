@@ -20,21 +20,26 @@ export default function AuditLogPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  const fetchEvents = async () => {
-    try {
-      const res = await fetch("/api/audit");
-      if (res.ok) {
-        const data = await res.json();
-        setEvents(data.events || []);
-      }
-    } catch {}
-    finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("/api/audit");
+        if (res.ok && isMounted) {
+          const data = await res.json();
+          setEvents(data.events || []);
+        }
+      } catch {
+        // Fallback for network error
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
     fetchEvents();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filtered = events.filter((e) => {
